@@ -3,7 +3,8 @@
 #pragma ide diagnostic ignored "cert-err34-c"
 #include <stdio.h>
 
-int main() {
+int main() 
+{
 
     int n;
     scanf("%d", &n);
@@ -23,7 +24,7 @@ int main() {
     printf("%d ", arr[x][y]);
 
     for (int k = 0; k < n / 2; k++) {
-        while (x < b2 + k){
+        while (x < b2 + k) {
             x = x + 1;
             printf("%d ", arr[x][y]);
         }

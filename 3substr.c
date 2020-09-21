@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-int main(){
-
+int main()
+{
     int n, m, i, j;
     scanf("%d %d", &n, &m);
 
@@ -10,10 +10,10 @@ int main(){
     char s2[m];
     scanf ("%s", &s1);
     scanf ("%s", &s2);
-    for (i = 0; i < n; i++){
-        if (s1[i] == s2[0] && (n - i) >= m){
+    for (i = 0; i < n; i++) {
+        if (s1[i] == s2[0] && (n - i) >= m) {
             j = 1;
-            while (s2[j] == s1[j + i] && (j + i) < n){
+            while (s2[j] == s1[j + i] && (j + i) < n) {
                 j = j + 1;
             }
             if (j == m)
@@ -21,5 +21,4 @@ int main(){
         }
     }
     printf("%d", k);
-
 }

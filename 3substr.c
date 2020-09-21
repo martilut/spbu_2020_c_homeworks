@@ -8,8 +8,8 @@ int main()
     int k = 0;
     char s1[n];
     char s2[m];
-    scanf ("%s", &s1);
-    scanf ("%s", &s2);
+    scanf("%s", &s1);
+    scanf("%s", &s2);
     for (i = 0; i < n; i++) {
         if (s1[i] == s2[0] && (n - i) >= m) {
             j = 1;

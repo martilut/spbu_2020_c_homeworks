@@ -7,4 +7,4 @@ set(SOURCE_LIB
     library/commonUtils/numericOperations.c
 )
 add_library(library ${SOURCE_LIB})
-
+add_executable(3substr.c 1.3/3substr.c)

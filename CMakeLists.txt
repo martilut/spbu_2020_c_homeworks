@@ -7,4 +7,3 @@ set(SOURCE_LIB
     library/commonUtils/numericOperations.c
 )
 add_library(library ${SOURCE_LIB})
-add_executable(5max.c 1.5/5max.c)

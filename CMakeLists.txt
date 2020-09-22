@@ -7,3 +7,4 @@ set(SOURCE_LIB
     library/commonUtils/numericOperations.c
 )
 add_library(library ${SOURCE_LIB})
+add_executable(1spiral.c 1.1/1spiral.c)

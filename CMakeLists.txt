@@ -7,4 +7,3 @@ set(SOURCE_LIB
     library/commonUtils/numericOperations.c
 )
 add_library(library ${SOURCE_LIB})
-add_executable(4simp.c 1.4/4simp.c)

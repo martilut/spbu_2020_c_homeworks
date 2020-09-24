@@ -1,6 +1,6 @@
 #include "arrayOperations.h"
 
-int swapElements(int *array, int a, int b)
+int swapElements(int array[], int a, int b)
 {
     int temp;
     temp = array[a];

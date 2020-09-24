@@ -29,7 +29,7 @@ int main()
     maxElement = MIN_INT;
     for (i = 0; i < n; i++) {
         if (arr[i] > maxElement && val[i] > 1)
-          maxElement = arr[i];
+            maxElement = arr[i];
     }
     if (maxElement == MIN_INT)
         printf("There's no element that occurs more than 1 time in the array");

@@ -16,8 +16,8 @@ int main()
     }
 
     if (n < 2){
-      printf("There are no simple numbers less than %d", n);
-      return 0;
+        printf("There are no simple numbers less than %d", n);
+        return 0;
     }
 
     for (int num = 2; num <= n; num++) {
@@ -30,8 +30,8 @@ int main()
             }
             counter = counter + 1;
         }
-        if (isComposite == 0) {
-          simples[counter] = num;
+        if (!isComposite) {
+            simples[counter] = num;
         }
     }
 

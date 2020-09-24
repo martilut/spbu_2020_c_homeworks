@@ -11,7 +11,7 @@ int main()
     int border_1 = x - 1;
     int border_2 = x + 1;
     int arr[n][n];
-    
+
     printf("Enter your array:\n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {

@@ -15,7 +15,7 @@ int main()
         simples[i] = -1;
     }
 
-    if (n < 2){
+    if (n < 2) {
         printf("There are no simple numbers less than %d", n);
         return 0;
     }

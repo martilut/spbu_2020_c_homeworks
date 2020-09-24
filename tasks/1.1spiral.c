@@ -3,10 +3,6 @@
 int main()
 {
     int n = 0;
-<<<<<<< HEAD:tasks/1.1spiral.c
-
-=======
->>>>>>> 3b5375bca8d6a6410c6f88160407559008e9cbd5:tasks/1spiral.c
     printf("Enter n:\n");
     scanf("%d", &n);
 
@@ -15,10 +11,7 @@ int main()
     int b1 = x - 1;
     int b2 = x + 1;
     int arr[n][n];
-<<<<<<< HEAD:tasks/1.1spiral.c
 
-=======
->>>>>>> 3b5375bca8d6a6410c6f88160407559008e9cbd5:tasks/1spiral.c
     printf("Enter your array:\n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {

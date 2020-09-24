@@ -8,8 +8,8 @@ int main()
 
     int x = n / 2;
     int y = n / 2;
-    int b1 = x - 1;
-    int b2 = x + 1;
+    int border_1 = x - 1;
+    int border_2 = x + 1;
     int arr[n][n];
 
     printf("Enter your array:\n");
@@ -22,23 +22,23 @@ int main()
     printf("%d ", arr[x][y]);
 
     for (int k = 0; k < n / 2; k++) {
-        while (x < b2 + k) {
+        while (x < border_2 + k) {
             x = x + 1;
             printf("%d ", arr[x][y]);
         }
-        while (y < b2 + k) {
+        while (y < border_2 + k) {
             y = y + 1;
             printf("%d ", arr[x][y]);
         }
-        while (x > b1 - k) {
+        while (x > border_1 - k) {
             x = x - 1;
             printf("%d ", arr[x][y]);
         }
-        while (y > b1 - k) {
+        while (y > border_1 - k) {
             y = y - 1;
             printf("%d ", arr[x][y]);
         }
-        while (x < b2 + k) {
+        while (x < border_2 + k) {
             x = x + 1;
             printf("%d ", arr[x][y]);
         }

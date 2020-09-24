@@ -2,12 +2,18 @@
 
 int main()
 {
-    int n, i, j;
-    long long int k;
+    int MIN_INT = -2147483648;
+    int n = 0;
+    int maxElement = 0;
+    int i = 0, j = 0;
+
+    printf("Enter array lenght:\n");
     scanf("%d", &n);
 
-    int arr[n];
-    int val[n];
+    int arr[n]; //contains elements
+    int val[n]; //val[i] is a number of times arr[i] occurs in arr
+
+    printf("Enter your array:\n");
 
     for (i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
@@ -19,13 +25,14 @@ int main()
             }
         }
     }
-    k = -2147483649;
+
+    maxElement = MIN_INT;
     for (i = 0; i < n; i++) {
-        if (arr[i] > k && val[i] > 1)
-            k = arr[i];
+        if (arr[i] > maxElement && val[i] > 1)
+          maxElement = arr[i];
     }
-    if (k == -2147483649)
-        printf("None");
+    if (maxElement == MIN_INT)
+        printf("There's no element that occurs more than 1 time in the array");
     else
-        printf("%d", k);
+        printf("%d", maxElement);
 }

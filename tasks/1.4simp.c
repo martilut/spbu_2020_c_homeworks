@@ -2,33 +2,43 @@
 
 int main()
 {
-    int n, k, i, j, s;
+    int n = 0;
+    int counter = 0;
+    int isComposite = 0;
+    int i = 0, j = 0;
+
+    printf("Enter your number:\n");
     scanf("%d", &n);
-    int simp[n];
+    int simples[n];
 
     for (i = 0; i < n; i++) {
-        simp[i] = -1;
+        simples[i] = -1;
     }
-    if (n >= 2) {
-        for (int num = 2; num <= n; num++) {
-            k = 0;
-            s = 0;
-            while (simp[k] != -1) {
-                if (num % simp[k] == 0) {
-                    s = 1;
-                    k = n - 2;
-                }
-                k = k + 1;
+
+    if (n < 2){
+      printf("There are no simple numbers less than %d", n);
+      return 0;
+    }
+
+    for (int num = 2; num <= n; num++) {
+        counter = 0;
+        isComposite = 0;
+        while (simples[counter] != -1) {
+            if (num % simples[counter] == 0) {
+                isComposite = 1;
+                counter = n - 2;
             }
-            if (s == 0) {
-                simp[k] = num;
-            }
+            counter = counter + 1;
         }
-        for (j = 0; j < n; j++) {
-            if (simp[j] != -1)
-                printf("%d ", simp[j]);
-            else
-                break;
+        if (isComposite == 0) {
+          simples[counter] = num;
         }
+    }
+
+    for (j = 0; j < n; j++) {
+        if (simples[j] != -1)
+            printf("%d ", simples[j]);
+        else
+            break;
     }
 }

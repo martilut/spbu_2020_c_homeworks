@@ -2,7 +2,9 @@
 
 int main()
 {
-    int n;
+    int n = 0;
+    
+    printf("Enter n:\n");
     scanf("%d", &n);
 
     int x = n / 2;
@@ -10,7 +12,8 @@ int main()
     int b1 = x - 1;
     int b2 = x + 1;
     int arr[n][n];
-
+    
+    printf("Enter your array:\n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             scanf("%d", &arr[i][j]);

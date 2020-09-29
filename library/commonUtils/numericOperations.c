@@ -10,7 +10,7 @@ int max(int a, int b)
     return a > b ? a : b;
 }
 
-int compare(const void *i, const void *j)
+int compare(const int *i, const int *j)
 {
-  return *(int *)i - *(int *)j;
+  return *i - *j;
 }

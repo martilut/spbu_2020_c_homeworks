@@ -7,7 +7,7 @@
 int getDigit(int array[])
 {
     int number = rand() % 10;
-    while (array[number] == -1){
+    while (array[number] == -1) {
         number = rand() % 10;
     }
     return number;
@@ -21,13 +21,13 @@ int main()
     int attempt = 0;
     int n = 0, i = 0;
     int cows = 0, bulls = 0;
-    int values[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int number[4] = {0, 0, 0, 0};
+    int values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int number[] = {0, 0, 0, 0};
 
     number[0] = rand() % 9 + 1;
     values[number[0]] = -1;
 
-    for (i = 1; i < 4; i++){
+    for (i = 1; i < 4; i++) {
         number[i] = getDigit(values);
         values[number[i]] = -1;
     }
@@ -55,5 +55,4 @@ int main()
     }
 
     printf("That's it, you won!");
-
 }

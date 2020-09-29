@@ -4,10 +4,7 @@
 
 #include "../library/commonUtils/arrayOperations.h"
 
-int compare(const void *i, const void *j)
-{
-  return *(int *)i - *(int *)j;
-}
+#include "../library/commonUtils/numericOperations.h"
 
 int main()
 {
@@ -30,12 +27,15 @@ int main()
 
     qsort(digits, count, sizeof(int), compare);
 
-    if (!digits[0] && count > 1)
-        swapElements(digits, 0, 2); // swaps digits[a] and digits[b - a - 1]
+    i = 0;
+    if (!digits[0] && count > 1) {
+        while (!digits[i])
+            i++;
+        swapElements(digits, 0, i + 1); // swaps digits[a] and digits[b - a - 1]
+    }
 
     printf("Minimum number is ");
     for (i = 0; i < count; i++) {
         printf("%d", digits[i]);
     }
-
 }

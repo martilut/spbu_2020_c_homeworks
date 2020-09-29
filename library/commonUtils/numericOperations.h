@@ -3,6 +3,6 @@
 
 int min(int a, int b);
 int max(int a, int b);
-int compare(const int *i, const int *j);
+int compare(const int* i, const int* j);
 
 #endif //SPBU_2020_C_NUMERICOPERATIONS_H

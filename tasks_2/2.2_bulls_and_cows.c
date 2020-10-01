@@ -60,7 +60,6 @@ int main()
     scanf("%d", &length);
 
     generateNumber(length, answer_digits);
-    printArray(answer_digits, 10);
 
     int n = 0;
     int attempt = 0;

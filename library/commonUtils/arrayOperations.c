@@ -13,7 +13,7 @@ void swapElements(int array[], int a, int b)
 
 void printArray(int array[], int n)
 {
-  for (int i = 0; i < n; ++i) {
-    printf("%d ", array[i]);
-  }
+    for (int i = 0; i < n; ++i) {
+        printf("%d ", array[i]);
+    }
 };

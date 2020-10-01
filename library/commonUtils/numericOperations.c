@@ -12,7 +12,7 @@ int max(int a, int b)
 
 int compare(const void* p1, const void* p2)
 {
-    int l = *(const int *)p1;
-    int r = *(const int *)p2;
+    int l = *(const int*)p1;
+    int r = *(const int*)p2;
     return (l - r);
 }

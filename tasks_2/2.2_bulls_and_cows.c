@@ -54,7 +54,7 @@ int main()
     srand(time(NULL));
 
     int length = 0;
-    int answer_digits[10] = {0};
+    int answer_digits[10] = { 0 };
 
     printf("How many digits does your number have?\n");
     scanf("%d", &length);
@@ -71,13 +71,14 @@ int main()
 
         printf("Enter your number:\n");
         scanf("%d", &n);
-        bool user_digits[10] = {false};
+        bool user_digits[10] = { false };
 
         if (isCorrect(length, n, user_digits)) {
             ++attempt;
             compareNumbers(length, n, &bulls, &cows, answer_digits);
             printf("Attempt %d: %d cows and %d bulls\n", attempt, cows, bulls);
         }
+
         else {
             printf("Your number must have different digits. Try again.\n");
         }

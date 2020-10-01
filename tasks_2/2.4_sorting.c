@@ -1,6 +1,9 @@
 #include <stdio.h>
+
 #include <stdlib.h>
+
 #include "../library/commonUtils/arrayOperations.h"
+
 #include "../library/commonUtils/numericOperations.h"
 
 int createCount(long long number)
@@ -19,7 +22,7 @@ void makeDigitArray(long long number, int array[], int count)
     int div = 0;
     long long temp_number = number;
     for (int i = 0; i < count; ++i) {
-        div = (int) (temp_number % 10);
+        div = (int)(temp_number % 10);
         array[i] = div;
         temp_number /= 10;
     }

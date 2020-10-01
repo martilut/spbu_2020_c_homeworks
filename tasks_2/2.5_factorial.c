@@ -26,5 +26,6 @@ int main()
 
     printf("%lld\n", recursiveFactorial(n));
     printf("%lld", iterativeFactorial(n));
+
     return 0;
 }

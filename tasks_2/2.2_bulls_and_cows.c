@@ -10,9 +10,11 @@
 
 #include "../library/commonUtils/arrayOperations.h"
 
-void getDigits(int digits[10], int lenght)
+void generateNumber(int length, int digits[10])
 {
-    for (int i = 1; i < lenght; ++i) {
+    int first_digit = rand() % 9 + 1;
+    digits[first_digit] = 1;
+    for (int i = 1; i < length; ++i) {
         int number = rand() % 10;
         while (digits[number] > 0) {
             number = rand() % 10;
@@ -21,35 +23,31 @@ void getDigits(int digits[10], int lenght)
     }
 }
 
-bool markDigits(int lenght, int number, int digits[10])
+bool isCorrect(int length, int number, bool digits[10])
 {
-    int temp_number = number;
-    for (int i = lenght - 1; i >= 0; --i) {
-        if (digits[temp_number % 10] > 0) {
+    for (int i = 0; i < length; ++i) {
+        if (digits[number % 10]) {
             return false;
         }
-        digits[temp_number % 10] = i + 1;
-        temp_number /= 10;
+        digits[number % 10] = true;
+        number /= 10;
     }
-    return true;
-}
+} //checks if user's number has different digits
 
-void resetDigits(int digits[10])
+void compareNumbers(int length, int number, int* bulls, int* cows, int digits[10])
 {
-    for (int i = 0; i < 10; ++i) {
-        digits[i] = 0;
-    }
-}
-
-void countDigits(int* bulls, int* cows, int user_digit, int user_value)
-{
-    if (user_digit > 0 && user_value > 0) {
-        if (user_digit == user_value) {
-            ++*bulls;
+    int step = length;
+    while (number) {
+        if (digits[number % 10] > 0) {
+            if (digits[number % 10] == step) {
+                ++*bulls;
+            }
+            else {
+                ++*cows;
+            }
         }
-        else {
-            ++*cows;
-        }
+        --step;
+        number /= 10;
     }
 }
 
@@ -57,41 +55,37 @@ int main()
 {
     srand(time(NULL));
 
-    int lenght = 0;
+    int length = 0;
+    int answer_digits[10] = {0};
 
     printf("How many digits does your number have?\n");
-    scanf("%d", &lenght);
+    scanf("%d", &length);
 
-    int correct_values[10] = {0};
-    int digit = rand() % 9 + 1;
-    correct_values[digit] = 1;
-    getDigits(correct_values, lenght);
+    generateNumber(length, answer_digits);
+    printArray(answer_digits, 10);
 
     int n = 0;
     int attempt = 0;
     int bulls = 0, cows = 0;
 
-    while (bulls != lenght) {
-        int user_values[10] = {0};
-
+    while (bulls != length) {
         bulls = 0;
         cows = 0;
 
         printf("Enter your number:\n");
         scanf("%d", &n);
+        bool user_digits[10] = {false};
 
-        if (markDigits(lenght, n, user_values)) {
+        if (isCorrect(length, n, user_digits)) {
             ++attempt;
-            for (int i = 0; i < 10; ++i) {
-                countDigits(&bulls, &cows, user_values[i], correct_values[i]);
-            }
-            printf("Attempt %d: %d cows and %d bulls\n",attempt, cows, bulls);
-            resetDigits(user_values);
+            compareNumbers(length, n, &bulls, &cows, answer_digits);
+            printf("Attempt %d: %d cows and %d bulls\n", attempt, cows, bulls);
         }
         else {
             printf("Your number must have different digits. Try again.\n");
         }
     }
-    printf("You won.");
+    printf("That's it, you won!");
+
     return 0;
 }

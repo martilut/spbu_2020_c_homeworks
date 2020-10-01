@@ -56,5 +56,6 @@ int main()
     for (int i = 0; i < count; ++i) {
         printf("%d", digits[i]);
     }
+
     return 0;
 }

@@ -40,6 +40,7 @@ void compareNumbers(int length, int number, int* bulls, int* cows, int digits[10
             if (digits[number % 10] == step) {
                 ++*bulls;
             }
+
             else {
                 ++*cows;
             }

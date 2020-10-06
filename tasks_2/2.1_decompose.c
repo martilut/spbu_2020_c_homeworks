@@ -4,7 +4,7 @@
 
 #include <string.h>
 
-void decompose(int number, int term, int index, int *array)
+void decompose(int number, int term, int index, int* array)
 {
     if (number < 0) {
         return;
@@ -34,7 +34,7 @@ int main()
     printf("Enter your n:\n");
     scanf("%d", &n);
 
-    int *terms = (int *)malloc(n * sizeof(int));
+    int* terms = (int*)malloc(n * sizeof(int));
     memset(terms, 0, n);
 
     decompose(n, n, 0, terms);

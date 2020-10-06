@@ -21,7 +21,7 @@ int countDigits(long long number)
     return count;
 }
 
-void makeDigitArray(long long number, int *array, int count)
+void makeDigitArray(long long number, int* array, int count)
 {
     int div = 0;
     long long temp_number = number;
@@ -32,7 +32,7 @@ void makeDigitArray(long long number, int *array, int count)
     }
 }
 
-void swapFirstZero(int *array)
+void swapFirstZero(int* array)
 {
     int i = 0;
     while (!array[i]) {
@@ -49,7 +49,7 @@ int main()
     scanf("%lld", &n);
 
     int count = countDigits(n);
-    int *digits = (int *)malloc(count * sizeof(int));
+    int* digits = (int*)malloc(count * sizeof(int));
     memset(digits, 0, count);
 
     makeDigitArray(n, digits, count);

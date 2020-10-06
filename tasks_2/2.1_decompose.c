@@ -1,13 +1,10 @@
+#include <malloc.h>
+
 #include <stdio.h>
 
-void fillArray(int array[], int n)
-{
-    for (int i = 0; i < n; ++i) {
-        array[i] = 0;
-    }
-}
+#include <string.h>
 
-void decompose(int number, int term, int index, int array[])
+void decompose(int number, int term, int index, int *array)
 {
     if (number < 0) {
         return;
@@ -37,10 +34,11 @@ int main()
     printf("Enter your n:\n");
     scanf("%d", &n);
 
-    int terms[n];
-    fillArray(terms, n);
+    int *terms = (int *)malloc(n * sizeof(int));
+    memset(terms, 0, n);
 
     decompose(n, n, 0, terms);
 
+    free(terms);
     return 0;
 }

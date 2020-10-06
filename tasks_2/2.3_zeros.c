@@ -1,8 +1,12 @@
+#include <malloc.h>
+
 #include <stdio.h>
+
+#include <string.h>
 
 #include "../library/commonUtils/arrayOperations.h"
 
-void moveZeros(int array[], int n)
+void moveZeros(int *array, int n)
 {
     int zeroCounter = 0;
     for (int i = 0; i < n; ++i) {
@@ -23,15 +27,15 @@ int main()
     printf("Enter n:\n");
     scanf("%d", &n);
 
-    int array[n];
+    int *array = (int *)malloc(n * sizeof(int));
+    memset(array, 0, n);
+
     printf("Enter your array:\n");
 
-    for (int i = 0; i < n; ++i) {
-        scanf("%d", &array[i]);
-    }
-
+    scanArray(array, n);
     moveZeros(array, n);
     printArray(array, n);
 
+    free(array);
     return 0;
 }

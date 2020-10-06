@@ -1,12 +1,16 @@
+#include <malloc.h>
+
 #include <stdio.h>
 
 #include <stdlib.h>
+
+#include <string.h>
 
 #include "../library/commonUtils/arrayOperations.h"
 
 #include "../library/commonUtils/numericOperations.h"
 
-int createCount(long long number)
+int countDigits(long long number)
 {
     long long temp_number = number;
     int count = 0;
@@ -17,7 +21,7 @@ int createCount(long long number)
     return count;
 }
 
-void makeDigitArray(long long number, int array[], int count)
+void makeDigitArray(long long number, int *array, int count)
 {
     int div = 0;
     long long temp_number = number;
@@ -28,7 +32,7 @@ void makeDigitArray(long long number, int array[], int count)
     }
 }
 
-void swapFirstZero(int array[])
+void swapFirstZero(int *array)
 {
     int i = 0;
     while (!array[i]) {
@@ -44,14 +48,15 @@ int main()
     printf("Enter your number:\n");
     scanf("%lld", &n);
 
-    int count = createCount(n);
-    int digits[count];
+    int count = countDigits(n);
+    int *digits = (int *)malloc(count * sizeof(int));
+    memset(digits, 0, count);
 
     makeDigitArray(n, digits, count);
 
     qsort(digits, count, sizeof(int), compare);
 
-    if (!digits[0] && count > 1) {
+    if (count > 1 && !digits[0]) {
         swapFirstZero(digits);
     }
 
@@ -60,5 +65,6 @@ int main()
         printf("%d", digits[i]);
     }
 
+    free(digits);
     return 0;
 }

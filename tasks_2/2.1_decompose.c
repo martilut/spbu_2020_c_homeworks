@@ -12,8 +12,7 @@ void decompose(int number, int term, int index, int* array)
             printf("%d ", array[k]);
         }
         printf("\n");
-    }
-    else {
+    } else {
         if (number >= term) {
             array[index] = term;
             decompose(number - term, term, index + 1, array);

@@ -46,8 +46,7 @@ void compareNumbers(int length, int number, int* bulls, int* cows, int digits[])
         if (digits[number % 10] > 0) {
             if (digits[number % 10] == step) {
                 ++*bulls;
-            }
-            else {
+            } else {
                 ++*cows;
             }
         }
@@ -83,8 +82,7 @@ int main()
             ++attempt;
             compareNumbers(length, n, &bulls, &cows, answer_digits);
             printf("Attempt %d: %d cows and %d bulls\n", attempt, cows, bulls);
-        }
-        else {
+        } else {
             printf("Your number is incorrect. Try again.\n");
         }
     }

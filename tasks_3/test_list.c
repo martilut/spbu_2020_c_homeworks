@@ -63,7 +63,7 @@ int main()
     }
 
     for (int i = 0; i < size; ++i) {
-      deleteElement(i, list);
+        deleteElement(i, list);
     }
     free(list);
 

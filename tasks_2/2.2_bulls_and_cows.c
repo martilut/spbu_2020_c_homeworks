@@ -1,14 +1,8 @@
 #define ARRAY_LENGTH 10
-
 #include <stdbool.h>
-
 #include <stdio.h>
-
 #include <stdlib.h>
-
 #include <time.h>
-
-#include "../library/commonUtils/arrayOperations.h"
 
 void generateNumber(int length, int digits[])
 {
@@ -35,6 +29,16 @@ bool isCorrect(int length, int number, bool digits[])
     return true;
 } //checks if user's number has different digits
 
+int getLenght(number)
+{
+    int lenght = 0;
+    while (number > 0) {
+        ++lenght;
+        number /= 10;
+    }
+    return lenght;
+}
+
 void compareNumbers(int length, int number, int* bulls, int* cows, int digits[])
 {
     int step = length;
@@ -43,7 +47,6 @@ void compareNumbers(int length, int number, int* bulls, int* cows, int digits[])
             if (digits[number % 10] == step) {
                 ++*bulls;
             }
-
             else {
                 ++*cows;
             }
@@ -59,7 +62,6 @@ int main()
 
     int length = 0;
     int answer_digits[ARRAY_LENGTH] = { 0 };
-
     printf("How many digits does your number have?\n");
     scanf("%d", &length);
 
@@ -77,14 +79,13 @@ int main()
         scanf("%d", &n);
         bool user_digits[ARRAY_LENGTH] = { false };
 
-        if (isCorrect(length, n, user_digits)) {
+        if (isCorrect(length, n, user_digits) && (getLenght(n) == length)) {
             ++attempt;
             compareNumbers(length, n, &bulls, &cows, answer_digits);
             printf("Attempt %d: %d cows and %d bulls\n", attempt, cows, bulls);
         }
-
         else {
-            printf("Your number must have different digits. Try again.\n");
+            printf("Your number is incorrect. Try again.\n");
         }
     }
     printf("That's it, you won!");

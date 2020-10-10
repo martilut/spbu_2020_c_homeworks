@@ -98,7 +98,7 @@ ListElement retrieve(int position, List* list)
     return *element;
 }
 
-bool deleteElement(int position, List* list)
+bool deleteElement(int position, List *list)
 {
     if (position < 0 || position >= list->size) {
         return false;

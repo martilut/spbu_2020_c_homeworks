@@ -1,4 +1,4 @@
-#include "..\library\dataStructures\List\list.h"
+#include "../library/dataStructures/List/list.h"
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main()
+{
     List* list = createList();
 
     int size = 0;
@@ -28,8 +29,7 @@ int main() {
     scanf("%d %d", &insertElement, &positionInsert);
     if (insert(createListElement(insertElement, NULL), positionInsert, list)) {
         printList(list);
-    }
-    else {
+    } else {
         printf("Your element can't be insert");
     }
     printf("\n");
@@ -40,8 +40,7 @@ int main() {
     int location = locate(createListElement(locateElement, NULL), list);
     if (location < getSize(list)) {
         printf("%d\n", location);
-    }
-    else {
+    } else {
         printf("There's no such an element in the list\n");
     }
 
@@ -50,8 +49,7 @@ int main() {
     scanf("%d", &positionRetrieve);
     if (positionRetrieve < getSize(list) && positionRetrieve >= 0) {
         printf("%d\n", retrieve(positionRetrieve, list).value);
-    }
-    else {
+    } else {
         printf("This position is incorrect\n");
     }
 
@@ -60,8 +58,7 @@ int main() {
     scanf("%d", &positionDelete);
     if (delete(positionDelete, list)) {
         printList(list);
-    }
-    else {
+    } else {
         printf("This position is incorrect");
     }
 

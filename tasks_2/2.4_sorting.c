@@ -1,8 +1,8 @@
+#include "../library/commonUtils/arrayOperations.h"
+#include "../library/commonUtils/numericOperations.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../library/commonUtils/arrayOperations.h"
-#include "../library/commonUtils/numericOperations.h"
 
 int countDigits(long long number)
 {

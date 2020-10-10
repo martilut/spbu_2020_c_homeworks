@@ -1,7 +1,7 @@
+#include "../library/commonUtils/arrayOperations.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../library/commonUtils/arrayOperations.h"
 
 void moveZeros(int* array, int n)
 {

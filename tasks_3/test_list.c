@@ -56,14 +56,14 @@ int main()
     int positionDelete = 0;
     printf("Delete element with position:\n");
     scanf("%d", &positionDelete);
-    if (delete(positionDelete, list)) {
+    if (deleteElement(positionDelete, list)) {
         printList(list);
     } else {
         printf("This position is incorrect");
     }
 
     for (int i = 0; i < size; ++i) {
-        delete(i, list);
+      deleteElement(i, list);
     }
     free(list);
 

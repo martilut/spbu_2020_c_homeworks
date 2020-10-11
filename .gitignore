@@ -1,2 +1,3 @@
 .idea/*
 cmake-build-debug/*
+tasks_3/test_list.c

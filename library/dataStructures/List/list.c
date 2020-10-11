@@ -140,3 +140,26 @@ bool deleteElement(int position, List* list)
     list->size--;
     return true;
 }
+
+bool removeElement(ListElement* previous, List* list)
+{
+    if (locate(previous, list) == -1) {
+        return false;
+    }
+    if (previous->next == NULL) {
+        previous->next = list->head;
+    }
+
+    ListElement* element = previous->next;
+
+    if (previous->next == list->tail) {
+        list->tail = previous;
+    }
+    if (previous->next == list->head) {
+        list->head = list->head->next;
+    }
+    previous->next = element->next;
+    free(element);
+    list->size--;
+    return true;
+}

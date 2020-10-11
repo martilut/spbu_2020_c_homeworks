@@ -19,8 +19,5 @@ add_executable(1.4simp.c tasks/1.4simp.c)
 add_executable(1.5max.c tasks/1.5max.c)
 target_link_libraries(1.2moving.c library)
 
-add_executable(test_list tasks_3/test_list.c)
-target_link_libraries(test_list listLibrary)
-
 add_executable(3.2_murders tasks_3/3.2_murders.c)
 target_link_libraries(3.2_murders listLibrary)

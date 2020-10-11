@@ -3,18 +3,13 @@
 #include <stdbool.h>
 
 typedef struct List List;
-
-typedef struct ListElement
-{
-  int value;
-  struct ListElement* next;
-} ListElement;
+typedef struct ListElement ListElement;
 
 ListElement* createListElement(int value, ListElement* next);
 List* createList();
 void printList(List* list);
-
 int getSize(List* list);
+
 ListElement tail(List* list);
 ListElement head(List* list);
 bool insert(ListElement* value, int position, List* list);

@@ -1,4 +1,4 @@
-#include "../library/dataStructures/List/list.h"
+#include "../library/dataStructures/List/list.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,12 +17,13 @@ int main()
         insert(createListElement(value, NULL), i, list);
     }
 
-    printf("List: ");
     printList(list);
-    printf("\n");
+
+    //Head and Tail test
     printf("List head is: %d\n", head(list).value);
     printf("List tail is: %d\n", tail(list).value);
 
+    //InsertElement test
     int insertElement = 0;
     int positionInsert = 0;
     printf("Enter an element to insert and its position:\n");
@@ -32,18 +33,19 @@ int main()
     } else {
         printf("Your element can't be insert");
     }
-    printf("\n");
 
+    //LocateElement test
     int locateElement = 0;
     printf("Enter an element to locate:\n");
     scanf("%d", &locateElement);
     int location = locate(createListElement(locateElement, NULL), list);
-    if (location < getSize(list)) {
+    if (location != -1) {
         printf("%d\n", location);
     } else {
-        printf("There's no such an element in the list\n");
+        printf("This element is not in the list\n");
     }
 
+    //RetrieveElement test
     int positionRetrieve = 0;
     printf("Retrieve element with position:\n");
     scanf("%d", &positionRetrieve);
@@ -53,6 +55,7 @@ int main()
         printf("This position is incorrect\n");
     }
 
+    //DeleteElement test
     int positionDelete = 0;
     printf("Delete element with position:\n");
     scanf("%d", &positionDelete);

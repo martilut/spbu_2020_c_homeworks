@@ -2,10 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct List {
+struct List
+{
     ListElement* head;
     ListElement* tail;
     int size;
+};
+
+struct ListElement
+{
+    int value;
+    struct ListElement* next;
 };
 
 ListElement tail(List* list)
@@ -42,11 +49,13 @@ List* createList()
 
 void printList(List* list)
 {
+    printf("List: ");
     ListElement* element = list->head;
     while (element != NULL) {
         printf("%d ", element->value);
         element = element->next;
     }
+    printf("\n");
 }
 
 bool insert(ListElement* value, int position, List* list)
@@ -84,6 +93,9 @@ int locate(ListElement* value, List* list)
     while (element != NULL && value->value != element->value) {
         ++counter;
         element = element->next;
+    }
+    if (counter == list->size) {
+        return -1;
     }
     return counter;
 }

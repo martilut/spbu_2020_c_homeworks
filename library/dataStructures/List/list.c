@@ -2,15 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct List
-{
+struct List {
     ListElement* head;
     ListElement* tail;
     int size;
 };
 
-struct ListElement
-{
+struct ListElement {
     int value;
     struct ListElement* next;
 };

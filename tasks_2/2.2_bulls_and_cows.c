@@ -29,14 +29,14 @@ bool isCorrect(int length, int number, bool digits[])
     return true;
 } //checks if user's number has different digits
 
-int getLenght(number)
+int getLength(number)
 {
-    int lenght = 0;
+    int length = 0;
     while (number > 0) {
-        ++lenght;
+        ++length;
         number /= 10;
     }
-    return lenght;
+    return length;
 }
 
 void compareNumbers(int length, int number, int* bulls, int* cows, int digits[])
@@ -78,7 +78,7 @@ int main()
         scanf("%d", &n);
         bool user_digits[ARRAY_LENGTH] = { false };
 
-        if (isCorrect(length, n, user_digits) && (getLenght(n) == length)) {
+        if (isCorrect(length, n, user_digits) && (getLength(n) == length)) {
             ++attempt;
             compareNumbers(length, n, &bulls, &cows, answer_digits);
             printf("Attempt %d: %d cows and %d bulls\n", attempt, cows, bulls);

@@ -3,9 +3,11 @@
 
 typedef struct ComplexNumber ComplexNumber;
 
+ComplexNumber* createComplexNumber(float realPart, float imaginaryPart);
 ComplexNumber sumComplexNumbers(ComplexNumber* x, ComplexNumber* y);
 ComplexNumber diffComplexNumbers(ComplexNumber* x, ComplexNumber* y);
 ComplexNumber multiplyComplexNumbers(ComplexNumber* x, ComplexNumber* y);
+ComplexNumber divComplexNumbers(ComplexNumber* x, ComplexNumber* y);
 void printComplexNumber(ComplexNumber* number);
 
 #endif // SPBU_2020_C_HOMEWORKS_COMPLEXNUMBERS_H

@@ -8,7 +8,7 @@ struct ComplexNumber {
 
 ComplexNumber sumComplexNumbers(ComplexNumber* x, ComplexNumber* y)
 {
-    ComplexNumber answer = {0, 0};
+    ComplexNumber answer = { 0, 0 };
     answer.RealPart = x->RealPart + y->RealPart;
     answer.ImaginaryPart = x->ImaginaryPart + y->ImaginaryPart;
     return answer;
@@ -16,7 +16,7 @@ ComplexNumber sumComplexNumbers(ComplexNumber* x, ComplexNumber* y)
 
 ComplexNumber diffComplexNumbers(ComplexNumber* x, ComplexNumber* y)
 {
-    ComplexNumber answer = {0, 0};
+    ComplexNumber answer = { 0, 0 };
     answer.RealPart = x->RealPart - y->RealPart;
     answer.ImaginaryPart = x->ImaginaryPart - y->ImaginaryPart;
     return answer;

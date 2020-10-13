@@ -1,31 +1,29 @@
 #include <stdio.h>
-#include <string.h>
 
 void sortTwoArrays(int n, int m, int arrayN[], int arrayM[], int answer_array[])
 {
     int indexN = 0;
     int indexM = 0;
     int indexA = 0;
-    while ((indexN < n) || (indexM < m)) {
+    while ((indexN < n) && (indexM < m)) {
         if (arrayN[indexN] < arrayM[indexM]) {
             answer_array[indexA] = arrayN[indexN];
-            ++indexA;
-            ++indexN;
+            indexN++;
         } else {
             answer_array[indexA] = arrayM[indexM];
-            ++indexA;
-            ++indexM;
+            indexM++;
         }
+        indexA++;
     }
-    while (indexN < n - 1) {
+    while (indexN < n) {
         answer_array[indexA] = arrayN[indexN];
-        ++indexA;
-        ++indexN;
+        indexA++;
+        indexN++;
     }
-    while (indexM < n - 1) {
+    while (indexM < m) {
         answer_array[indexA] = arrayM[indexM];
-        ++indexA;
-        ++indexM;
+        indexA++;
+        indexM++;
     }
 }
 
@@ -36,7 +34,6 @@ int main()
     scanf("%d", &n);
 
     int arrayV[n];
-    memset(&arrayV, 0, n);
 
     printf("Enter Vasya's stack:\n");
     for (int i = 0; i < n; ++i) {
@@ -48,7 +45,6 @@ int main()
     scanf("%d", &m);
 
     int arrayP[m];
-    memset(&arrayP, 0, m);
 
     printf("Enter Petya's stack:\n");
     for (int i = 0; i < m; ++i) {
@@ -56,7 +52,6 @@ int main()
     }
 
     int answer_array[n + m];
-    memset(&answer_array, 0, n + m);
     sortTwoArrays(n, m, arrayV, arrayP, answer_array);
 
     for (int j = 0; j < n + m; ++j) {

@@ -60,6 +60,6 @@ int main()
     sortTwoArrays(n, m, arrayV, arrayP, answer_array);
 
     for (int j = 0; j < n + m; ++j) {
-        printf("%d ", answer_array[j]);
+        printf("%d ", answer_array[n + m - j - 1]);
     }
 }

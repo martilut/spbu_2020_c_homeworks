@@ -43,7 +43,7 @@ ComplexNumber divComplexNumbers(ComplexNumber* x, ComplexNumber* y)
 {
     ComplexNumber answer = { 0, 0 };
     answer.RealPart = (x->RealPart * y->RealPart + x->ImaginaryPart * y->ImaginaryPart) / (y->RealPart * y->RealPart + y->ImaginaryPart * y->ImaginaryPart);
-    answer.ImaginaryPart = (x->ImaginaryPart * y->ImaginaryPart - y->ImaginaryPart * x->ImaginaryPart) / (y->RealPart * y->RealPart + y->ImaginaryPart * y->ImaginaryPart);
+    answer.ImaginaryPart = (x->ImaginaryPart * y->realPart - y->ImaginaryPart * x->realPart) / (y->RealPart * y->RealPart + y->ImaginaryPart * y->ImaginaryPart);
     return answer;
 }
 

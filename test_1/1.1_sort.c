@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
-void sortTwoArrays(int n, int m, int arrayN[], int arrayM[], int answer_array[]) {
+void sortTwoArrays(int n, int m, int arrayN[], int arrayM[], int answer_array[])
+{
     int indexN = 0;
     int indexM = 0;
     int indexA = 0;
@@ -10,8 +11,7 @@ void sortTwoArrays(int n, int m, int arrayN[], int arrayM[], int answer_array[])
             answer_array[indexA] = arrayN[indexN];
             ++indexA;
             ++indexN;
-        }
-        else {
+        } else {
             answer_array[indexA] = arrayM[indexM];
             ++indexA;
             ++indexM;

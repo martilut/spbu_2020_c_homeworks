@@ -40,7 +40,7 @@ int main()
 
     printf("Enter Vasya's stack:\n");
     for (int i = 0; i < n; ++i) {
-        scanf("%d", &arrayV[i]);
+        scanf("%d", &arrayV[n - i - 1]);
     }
 
     int m = 0;
@@ -52,7 +52,7 @@ int main()
 
     printf("Enter Petya's stack:\n");
     for (int i = 0; i < m; ++i) {
-        scanf("%d", &arrayP[i]);
+        scanf("%d", &arrayP[m - i - 1]);
     }
 
     int answer_array[n + m];

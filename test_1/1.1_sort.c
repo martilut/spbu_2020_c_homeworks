@@ -57,4 +57,6 @@ int main()
     for (int j = 0; j < n + m; ++j) {
         printf("%d ", answer_array[n + m - j - 1]);
     }
+    
+    return 0;
 }

@@ -33,7 +33,7 @@ int main()
         char* string = malloc(MAX_LENGTH * sizeof(char));
         scanf("%s", string);
         if (atof(string)) {
-             push(stack, createStackElement(atof(string)));
+            push(stack, createStackElement(atof(string)));
         } else {
             double firstElement = getValue(pop(stack));
             double secondElement = getValue(pop(stack));

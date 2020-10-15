@@ -6,21 +6,21 @@
 double makeOperation(char sign, double b, double a, int* error)
 {
     switch (sign) {
-        case '+':
-            return a + b;
-        case '-':
-            return a - b;
-        case '*':
-            return a * b;
-        case '/':
-            if (b == 0) {
-                *error = 1;
-                return 0;
-            }
-            return a / b;
-        default:
-            *error = 2;
+    case '+':
+        return a + b;
+    case '-':
+        return a - b;
+    case '*':
+        return a * b;
+    case '/':
+        if (b == 0) {
+            *error = 1;
             return 0;
+        }
+        return a / b;
+    default:
+        *error = 2;
+        return 0;
     }
 }
 

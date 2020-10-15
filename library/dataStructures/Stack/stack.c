@@ -35,6 +35,7 @@ StackElement* pop(Stack* stack)
     }
     StackElement* element = stack->top;
     stack->top = element->next;
+    element->next = NULL;
     stack->size--;
     return element;
 }
@@ -58,4 +59,16 @@ void printStack(Stack* stack)
         printf("%f ", element->value);
         element = element->next;
     }
+}
+
+void removeStack(Stack* stack)
+{
+    int size = stack->size;
+    while (size > 0) {
+        StackElement* element = stack->top;
+        stack->top = element->next;
+        free(element);
+        --size;
+    }
+    free(stack);
 }

@@ -1,23 +1,35 @@
-#define MAX_LENGTH 100
+#include "../library/commonUtils/arrayOperations.h"
 #include "../library/dataStructures/Stack/stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-double makeOperation(char sign, double b, double a)
+double makeOperation(char sign, double b, double a, int* error)
 {
-    if (sign == '+') {
-        return a + b;
+    switch (sign) {
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '*':
+            return a * b;
+        case '/':
+            if (b == 0) {
+                *error = 1;
+                return 0;
+            }
+            return a / b;
+        default:
+            *error = 2;
+            return 0;
     }
-    if (sign == '-') {
-        return a - b;
-    }
-    if (sign == '*') {
-        return a * b;
-    }
-    if ((sign == '/') && (b != 0)) {
-        return a / b;
+}
+
+void printError(int errorCode)
+{
+    if (errorCode == 1) {
+        printf("Incorrect input: division by zero");
     } else {
-        return 0;
+        printf("Incorrect input: unexpected sign");
     }
 }
 
@@ -28,19 +40,32 @@ int main()
     scanf("%d", &expressionLength);
 
     Stack* stack = createStack();
-    printf("Enter your expression:\n");
+
+    printf("Enter your expression (using spaces):\n");
+    char* emptyScan = scanString(); //it scans a new line sign left by previous scanf in buffer
+    free(emptyScan);
+
     for (int i = 0; i < expressionLength; ++i) {
-        char* string = malloc(MAX_LENGTH * sizeof(char));
-        scanf("%s", string);
-        if (atof(string)) {
-            push(stack, createStackElement(atof(string)));
+        char* string = scanString();
+        double converted = atof(string);
+        if ((converted != 0) || (*string == '0')) {
+            push(stack, createStackElement(converted));
         } else {
+            int error = 0;
             double firstElement = getValue(pop(stack));
             double secondElement = getValue(pop(stack));
-            double answer = makeOperation(*string, firstElement, secondElement);
-            push(stack, createStackElement(answer));
+            double answer = makeOperation(*string, firstElement, secondElement, &error);
+            if (error == 0) {
+                push(stack, createStackElement(answer));
+            } else {
+                printError(error);
+                return 0;
+            }
         }
     }
+
     printf("Answer is: %.3f", getValue(pop(stack)));
+    removeStack(stack);
+
     return 0;
 }

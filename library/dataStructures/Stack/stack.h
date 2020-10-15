@@ -9,6 +9,7 @@ StackElement* createStackElement(double value);
 
 StackElement* pop(Stack* stack);
 void push(Stack* stack, StackElement* element);
+void removeStack(Stack* stack);
 
 double getValue(StackElement* element);
 void printStack(Stack* stack);

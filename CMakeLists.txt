@@ -28,3 +28,4 @@ target_link_libraries(2.4_sorting.c library)
 
 add_executable(4.1_postfix tasks_4/4.1_postfix.c)
 target_link_libraries(4.1_postfix stackLibrary)
+target_link_libraries(4.1_postfix library)

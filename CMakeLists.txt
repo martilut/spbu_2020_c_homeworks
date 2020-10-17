@@ -22,3 +22,6 @@ add_executable(2.5_factorial.c tasks_2/2.5_factorial.c)
 target_link_libraries(2.2_bulls_and_cows.c library)
 target_link_libraries(2.3_zeros.c library)
 target_link_libraries(2.4_sorting.c library)
+
+add_executable(4.3_binaries tasks_4/4.3_binaries.c)
+target_link_libraries(4.3_binaries PRIVATE m)

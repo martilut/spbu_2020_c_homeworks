@@ -16,6 +16,7 @@ bool insert(ListElement* value, int position, List* list);
 int locate(ListElement* value, List* list);
 ListElement retrieve(int position, List* list);
 bool deleteElement(int position, List* list);
-bool removeElement(ListElement* element, List* list);
+void removeList(List* list);
+bool removeNextElement(ListElement* element, List* list);
 
 #endif // SPBU_2020_C_HOMEWORKS_LIST_H

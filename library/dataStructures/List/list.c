@@ -141,7 +141,7 @@ bool deleteElement(int position, List* list)
     return true;
 }
 
-bool removeElement(ListElement* previous, List* list)
+bool removeNextElement(ListElement* previous, List* list)
 {
     if (locate(previous, list) == -1) {
         return false;
@@ -162,4 +162,12 @@ bool removeElement(ListElement* previous, List* list)
     free(element);
     list->size--;
     return true;
+}
+
+void removeList(List* list)
+{
+    for (int i = 0; i < list->size; ++i) {
+        deleteElement(i, list);
+    }
+    free(list);
 }

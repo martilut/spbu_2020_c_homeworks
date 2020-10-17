@@ -22,9 +22,10 @@ int main()
             }
             element = element->next;
         }
-        removeElement(element, list);
+        removeNextElement(element, list);
         --n;
     }
     printf("%d", retrieve(0, list).value + 1);
+    removeList(list);
     return 0;
 }

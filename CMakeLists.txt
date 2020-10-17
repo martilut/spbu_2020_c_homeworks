@@ -24,3 +24,4 @@ target_link_libraries(2.3_zeros.c library)
 target_link_libraries(2.4_sorting.c library)
 
 add_executable(4.2_double tasks_4/4.2_double.c)
+target_link_libraries(4.2_double PRIVATE m)

@@ -57,10 +57,20 @@ int main()
     if (deleteElement(positionDelete, list)) {
         printList(list);
     } else {
-        printf("This position is incorrect");
+        printf("This position is incorrect\n");
     }
 
     removeList(list);
+
+    int errorLocate = 0;
+    List* listLocate = createList();
+    for (int i = 0; i < 5; ++i) {
+        insert(createListElement(i + 1, NULL), i, listLocate);
+    }
+    ListElement previous = retrieve(2, listLocate, &errorLocate);
+    printf("%d", locate(previous.next, listLocate));
+
+    removeList(listLocate);
 
     return 0;
 }

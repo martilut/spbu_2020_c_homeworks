@@ -7,7 +7,7 @@ typedef struct StackElement StackElement;
 Stack* createStack();
 StackElement* createStackElement(double value);
 
-StackElement* pop(Stack* stack);
+double pop(Stack* stack);
 void push(Stack* stack, StackElement* element);
 void removeStack(Stack* stack);
 

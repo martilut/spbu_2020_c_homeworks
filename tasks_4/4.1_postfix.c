@@ -52,19 +52,22 @@ int main()
             push(stack, createStackElement(converted));
         } else {
             int error = 0;
-            double firstElement = getValue(pop(stack));
-            double secondElement = getValue(pop(stack));
+            double firstElement = pop(stack); // memory's got cleared in pop function
+            double secondElement = pop(stack);
             double answer = makeOperation(*string, firstElement, secondElement, &error);
             if (error == 0) {
                 push(stack, createStackElement(answer));
             } else {
                 printError(error);
+                free(string);
+                removeStack(stack);
                 return 0;
             }
         }
+        free(string);
     }
 
-    printf("Answer is: %.3f", getValue(pop(stack)));
+    printf("Answer is: %.3f", pop(stack));
     removeStack(stack);
 
     return 0;

@@ -28,16 +28,17 @@ StackElement* createStackElement(double value)
     return element;
 }
 
-StackElement* pop(Stack* stack)
+double pop(Stack* stack)
 {
     if (stack->size == 0) {
-        return NULL;
+        return 0;
     }
     StackElement* element = stack->top;
+    double value = element->value;
     stack->top = element->next;
-    element->next = NULL;
     stack->size--;
-    return element;
+    free(element);
+    return value;
 }
 
 void push(Stack* stack, StackElement* element)

@@ -88,7 +88,7 @@ int locate(ListElement* value, List* list)
 {
     int counter = 0;
     ListElement* element = list->head;
-    while (element != NULL && value->value != element->value) {
+    while (element != NULL && element != value) {
         ++counter;
         element = element->next;
     }
@@ -98,8 +98,13 @@ int locate(ListElement* value, List* list)
     return counter;
 }
 
-ListElement retrieve(int position, List* list)
+ListElement retrieve(int position, List* list, int* error)
 {
+    if (position < 0 || position >= list->size) {
+        *error = 1;
+        return *list->head;
+    }
+
     ListElement* element = list->head;
     while (position > 0) {
         --position;
@@ -110,7 +115,7 @@ ListElement retrieve(int position, List* list)
 
 bool deleteElement(int position, List* list)
 {
-    if (position < 0 || position >= list->size) {
+    if (position < 0 || position >= list->size || list->size == 0) {
         return false;
     }
 
@@ -127,16 +132,24 @@ bool deleteElement(int position, List* list)
             --position;
             previous = previous->next;
         }
-        if (previous->next == list->tail) {
-            free(previous->next);
+        ListElement* element = previous->next;
+        if (element == list->tail) {
             previous->next = NULL;
             list->tail = previous;
+            free(element);
         } else {
-            ListElement* element = previous->next;
-            previous->next = previous->next->next;
+            previous->next = element->next;
             free(element);
         }
     }
     list->size--;
     return true;
+}
+
+void removeList(List* list)
+{
+    for (int i = 0; i < list->size; ++i) {
+        deleteElement(i, list);
+    }
+    free(list);
 }

@@ -9,6 +9,10 @@ int main()
     int size = 0;
     printf("Enter a size of your list:\n");
     scanf("%d", &size);
+    if (size == 0) {
+        printf("Size can't be zero");
+        return 0;
+    }
 
     printf("Enter your list:\n");
     for (int i = 0; i < size; ++i) {
@@ -31,26 +35,17 @@ int main()
     if (insert(createListElement(insertElement, NULL), positionInsert, list)) {
         printList(list);
     } else {
-        printf("Your element can't be insert");
-    }
-
-    //LocateElement test
-    int locateElement = 0;
-    printf("Enter an element to locate:\n");
-    scanf("%d", &locateElement);
-    int location = locate(createListElement(locateElement, NULL), list);
-    if (location != -1) {
-        printf("%d\n", location);
-    } else {
-        printf("This element is not in the list\n");
+        printf("Your element can't be insert\n");
     }
 
     //RetrieveElement test
     int positionRetrieve = 0;
+    int error = 0;
     printf("Retrieve element with position:\n");
     scanf("%d", &positionRetrieve);
-    if (positionRetrieve < getSize(list) && positionRetrieve >= 0) {
-        printf("%d\n", retrieve(positionRetrieve, list).value);
+    ListElement element = retrieve(positionRetrieve, list, &error);
+    if (error == 0) {
+        printf("%d\n", element.value);
     } else {
         printf("This position is incorrect\n");
     }
@@ -65,10 +60,7 @@ int main()
         printf("This position is incorrect");
     }
 
-    for (int i = 0; i < size; ++i) {
-        deleteElement(i, list);
-    }
-    free(list);
+    removeList(list);
 
     return 0;
 }

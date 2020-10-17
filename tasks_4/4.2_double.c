@@ -1,9 +1,9 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 union doubleBin {
-  double value;
-  unsigned char bytes[8];
+    double value;
+    unsigned char bytes[8];
 };
 
 int exponentToInt(int array[])
@@ -49,7 +49,7 @@ int main()
     if (exponent == 0) {
         printf("Zero has no exponential form");
     } else {
-        printf("Exponential form is %c%.10lf * 2^{%d}",binaryArray[0] ? '-' : '+', 1 + mantissa, exponent - 1023);
+        printf("Exponential form is %c%.10lf * 2^{%d}", binaryArray[0] ? '-' : '+', 1 + mantissa, exponent - 1023);
     }
     return 0;
 }

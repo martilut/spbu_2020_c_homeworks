@@ -2,19 +2,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-ListElement tail(List* list)
+struct ListElement {
+    int value;
+    struct ListElement* next;
+};
+
+struct List {
+    ListElement* head;
+    ListElement* tail;
+    int size;
+};
+
+ListElement* tail(List* list)
 {
-    return *list->tail;
+    return list->tail;
 }
 
-ListElement head(List* list)
+ListElement* head(List* list)
 {
-    return *list->head;
+    return list->head;
 }
 
-int getSize(List* list)
+int getValue(ListElement* element)
 {
-    return list->size;
+    return element->value;
+}
+
+ListElement* getNext(ListElement* element)
+{
+    return element->next;
 }
 
 ListElement* createListElement(int value)
@@ -87,11 +103,11 @@ int locate(ListElement* value, List* list)
     return counter;
 }
 
-ListElement retrieve(int position, List* list, int* error)
+ListElement* retrieve(int position, List* list, int* error)
 {
     if (position < 0 || position >= list->size) {
         *error = 1;
-        return *list->head;
+        return list->head;
     }
 
     ListElement* element = list->head;
@@ -99,7 +115,7 @@ ListElement retrieve(int position, List* list, int* error)
         --position;
         element = element->next;
     }
-    return *element;
+    return element;
 }
 
 bool deleteElement(int position, List* list)

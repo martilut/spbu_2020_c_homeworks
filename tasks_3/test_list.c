@@ -13,7 +13,7 @@ int main()
         insert(createListElement(6), 0, list);
         insert(createListElement(2), 0, list);
         printList(list);
-        printf("%d\n", retrieve(0, list, &errorZero).value);
+        printf("%d\n", getValue(retrieve(0, list, &errorZero)));
         deleteElement(1, list);
         printList(list);
         removeList(list);
@@ -30,8 +30,8 @@ int main()
     printList(list);
 
     //Head and Tail test
-    printf("List head is: %d\n", head(list).value);
-    printf("List tail is: %d\n", tail(list).value);
+    printf("List head is: %d\n", getValue(head(list)));
+    printf("List tail is: %d\n", getValue(tail(list)));
 
     //InsertElement test
     int insertElement = 0;
@@ -49,9 +49,9 @@ int main()
     int error = 0;
     printf("Retrieve element with position:\n");
     scanf("%d", &positionRetrieve);
-    ListElement element = retrieve(positionRetrieve, list, &error);
+    ListElement* element = retrieve(positionRetrieve, list, &error);
     if (error == 0) {
-        printf("%d\n", element.value);
+        printf("%d\n", getValue(element));
     } else {
         printf("This position is incorrect\n");
     }
@@ -73,9 +73,9 @@ int main()
     for (int i = 0; i < 5; ++i) {
         insert(createListElement(i + 1), i, listLocate);
     }
-    ListElement previous = retrieve(2, listLocate, &errorLocate);
+    ListElement* previous = retrieve(2, listLocate, &errorLocate);
     if (errorLocate == 0) {
-        printf("%d", locate(previous.next, listLocate));;
+        printf("%d", locate(getNext(previous), listLocate));;
     } else {
         printf("This position is incorrect\n");
     }

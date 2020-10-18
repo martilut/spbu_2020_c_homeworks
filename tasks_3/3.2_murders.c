@@ -1,4 +1,4 @@
-#include "../library/dataStructures/List/list.c"
+#include "../library/dataStructures/List/list.h"
 #include <stdio.h>
 
 int main()
@@ -14,18 +14,18 @@ int main()
         insert(createListElement(i, NULL), i, list);
     }
 
-    ListElement* element = list->tail;
+    ListElement* element = tail(list);
     while (n > 1) {
         for (int j = 0; j < m - 1; ++j) {
-            if (element->next == NULL) {
-                element->next = list->head;
+            if (getNext(element) == NULL) {
+                changeNextInCycle(element, list);
             }
-            element = element->next;
+            element = getNext(element);
         }
         removeNextElement(element, list);
         --n;
     }
-    printf("%d", retrieve(0, list).value + 1);
+    printf("%d", getValue(retrieve(0, list)) + 1);
     removeList(list);
     return 0;
 }

@@ -13,14 +13,14 @@ struct ListElement {
     struct ListElement* next;
 };
 
-ListElement tail(List* list)
+ListElement* tail(List* list)
 {
-    return *list->tail;
+    return list->tail;
 }
 
-ListElement head(List* list)
+ListElement* head(List* list)
 {
-    return *list->head;
+    return list->head;
 }
 
 int getSize(List* list)
@@ -98,14 +98,14 @@ int locate(ListElement* value, List* list)
     return counter;
 }
 
-ListElement retrieve(int position, List* list)
+ListElement* retrieve(int position, List* list)
 {
     ListElement* element = list->head;
     while (position > 0) {
         --position;
         element = element->next;
     }
-    return *element;
+    return element;
 }
 
 bool deleteElement(int position, List* list)
@@ -167,7 +167,22 @@ bool removeNextElement(ListElement* previous, List* list)
 void removeList(List* list)
 {
     for (int i = 0; i < list->size; ++i) {
-        deleteElement(i, list);
+        deleteElement(0, list);
     }
     free(list);
+}
+
+ListElement* getNext(ListElement* element)
+{
+    return element->next;
+}
+
+void changeNextInCycle(ListElement* element, List* list)
+{
+    element->next = list->head;
+}
+
+int getValue(ListElement* element)
+{
+    return element->value;
 }

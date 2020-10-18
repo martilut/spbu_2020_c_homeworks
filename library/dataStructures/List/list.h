@@ -2,10 +2,18 @@
 #define SPBU_2020_C_HOMEWORKS_LIST_H
 #include <stdbool.h>
 
-typedef struct List List;
-typedef struct ListElement ListElement;
+typedef struct ListElement {
+  int value;
+  struct ListElement* next;
+} ListElement;
 
-ListElement* createListElement(int value, ListElement* next);
+typedef struct List {
+  ListElement* head;
+  ListElement* tail;
+  int size;
+} List;
+
+ListElement* createListElement(int value);
 List* createList();
 void printList(List* list);
 int getSize(List* list);

@@ -2,17 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct List {
-    ListElement* head;
-    ListElement* tail;
-    int size;
-};
-
-struct ListElement {
-    int value;
-    struct ListElement* next;
-};
-
 ListElement tail(List* list)
 {
     return *list->tail;
@@ -28,11 +17,11 @@ int getSize(List* list)
     return list->size;
 }
 
-ListElement* createListElement(int value, ListElement* next)
+ListElement* createListElement(int value)
 {
     ListElement* element = (ListElement*)malloc(sizeof(ListElement));
     element->value = value;
-    element->next = next;
+    element->next = NULL;
     return element;
 }
 
@@ -115,7 +104,7 @@ ListElement retrieve(int position, List* list, int* error)
 
 bool deleteElement(int position, List* list)
 {
-    if (position < 0 || position >= list->size || list->size == 0) {
+    if (position < 0 || position >= list->size) {
         return false;
     }
 
@@ -149,7 +138,7 @@ bool deleteElement(int position, List* list)
 void removeList(List* list)
 {
     for (int i = 0; i < list->size; ++i) {
-        deleteElement(i, list);
+        deleteElement(0, list);
     }
     free(list);
 }

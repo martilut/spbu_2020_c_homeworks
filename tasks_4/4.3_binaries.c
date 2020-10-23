@@ -1,5 +1,7 @@
-#define BITS_PER_INT sizeof(int) * 8
 #include <stdio.h>
+#include <string.h>
+
+const int BITS_PER_INT = sizeof(int) * 8;
 
 void invertBits(int binaryArray[])
 {
@@ -43,7 +45,7 @@ void printBinaryArray(int binaryArray[])
 void getBinarySum(int binaryArray1[], int binaryArray2[], int binaryResult[])
 {
     for (int i = BITS_PER_INT - 1; i >= 0; --i) {
-        if (binaryResult[i] + binaryArray1[i] + binaryArray2[i] > 1) {
+        if ((binaryResult[i] + binaryArray1[i] + binaryArray2[i] > 1) && (i >= 1)) {
             binaryResult[i - 1] = 1;
         }
         binaryResult[i] = (binaryResult[i] + binaryArray1[i] + binaryArray2[i]) % 2;
@@ -57,19 +59,22 @@ int main()
     printf("Enter your numbers:\n");
     scanf("%d %d", &number1, &number2);
 
-    int binaryArray1[BITS_PER_INT] = { 0 };
+    int binaryArray1[BITS_PER_INT];
+    memset(binaryArray1, 0, BITS_PER_INT * 4);
     decimalToBinary(number1, binaryArray1);
     printf("Number %d is ", number1);
     printBinaryArray(binaryArray1);
     printf("\n");
 
-    int binaryArray2[BITS_PER_INT] = { 0 };
+    int binaryArray2[BITS_PER_INT];
+    memset(binaryArray2, 0, BITS_PER_INT * 4);
     decimalToBinary(number2, binaryArray2);
     printf("Number %d is ", number2);
     printBinaryArray(binaryArray2);
     printf("\n");
 
-    int binarySumArray[BITS_PER_INT] = { 0 };
+    int binarySumArray[BITS_PER_INT];
+    memset(binarySumArray, 0, BITS_PER_INT * 4);
     getBinarySum(binaryArray1, binaryArray2, binarySumArray);
     printf("Binary sum is ");
     printBinaryArray(binarySumArray);

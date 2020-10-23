@@ -1,5 +1,6 @@
 #include "../library/dataStructures/List/list.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -34,14 +35,16 @@ int main()
     printf("List tail is: %d\n", getValue(tail(list)));
 
     //InsertElement test
-    int insertElement = 0;
+    int insertValue = 0;
     int positionInsert = 0;
     printf("Enter an element to insert and its position:\n");
-    scanf("%d %d", &insertElement, &positionInsert);
-    if (insert(createListElement(insertElement), positionInsert, list)) {
+    scanf("%d %d", &insertValue, &positionInsert);
+    ListElement* insertElement = createListElement(insertValue);
+    if (insert(insertElement, positionInsert, list)) {
         printList(list);
     } else {
         printf("Your element can't be insert\n");
+        free(insertElement);
     }
 
     //RetrieveElement test
@@ -51,7 +54,7 @@ int main()
     scanf("%d", &positionRetrieve);
     ListElement* element = retrieve(positionRetrieve, list, &error);
     if (error == 0) {
-        printf("%d\n", getValue(element));
+        printf("%d is on position %d\n", getValue(element), positionRetrieve);
     } else {
         printf("This position is incorrect\n");
     }
@@ -69,13 +72,15 @@ int main()
     removeList(list);
 
     int errorLocate = 0;
+    int positionLocate = 2;
     List* listLocate = createList();
     for (int i = 0; i < 5; ++i) {
-        insert(createListElement(i + 1), i, listLocate);
+        ListElement* listNumber = createListElement(i + 1);
+        insert(listNumber, i, listLocate);
     }
-    ListElement* previous = retrieve(2, listLocate, &errorLocate);
+    ListElement* previous = retrieve(positionLocate, listLocate, &errorLocate);
     if (errorLocate == 0) {
-        printf("%d", locate(getNext(previous), listLocate));;
+        printf("%d is on position %d", locate(getNext(previous), listLocate), positionLocate);
     } else {
         printf("This position is incorrect\n");
     }

@@ -151,6 +151,11 @@ bool deleteElement(int position, List* list)
     return true;
 }
 
+void removeListElement(ListElement* element)
+{
+    free(element);
+}
+
 void removeList(List* list)
 {
     for (int i = 0; i < list->size; ++i) {

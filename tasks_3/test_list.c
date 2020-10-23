@@ -44,7 +44,7 @@ int main()
         printList(list);
     } else {
         printf("Your element can't be insert\n");
-        free(insertElement);
+        removeListElement(insertElement);
     }
 
     //RetrieveElement test
@@ -66,18 +66,23 @@ int main()
     if (deleteElement(positionDelete, list)) {
         printList(list);
     } else {
-        printf("This position is incorrect\n");
+        printf("This position is incorrect");
     }
+    printf("\n");
 
     removeList(list);
 
     int errorLocate = 0;
     int positionLocate = 2;
     List* listLocate = createList();
+    ListElement* listNumber = createListElement(1);
     for (int i = 0; i < 5; ++i) {
-        ListElement* listNumber = createListElement(i + 1);
         insert(listNumber, i, listLocate);
+        listNumber = createListElement(i + 2);
     }
+
+    printList(listLocate);
+
     ListElement* previous = retrieve(positionLocate, listLocate, &errorLocate);
     if (errorLocate == 0) {
         printf("%d is on position %d", locate(getNext(previous), listLocate), positionLocate);
@@ -85,6 +90,8 @@ int main()
         printf("This position is incorrect\n");
     }
 
+    removeListElement(listNumber);
+    removeListElement(previous);
     removeList(listLocate);
 
     return 0;

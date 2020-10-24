@@ -25,6 +25,9 @@ ListElement* head(List* list)
 
 int getValue(ListElement* element)
 {
+    if (element == NULL) {
+        return NULL;
+    }
     return element->value;
 }
 
@@ -158,7 +161,8 @@ void removeListElement(ListElement* element)
 
 void removeList(List* list)
 {
-    for (int i = 0; i < list->size; ++i) {
+    int size = list->size;
+    for (int i = 0; i < size; ++i) {
         deleteElement(0, list);
     }
     free(list);

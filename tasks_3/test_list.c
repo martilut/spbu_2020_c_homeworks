@@ -1,6 +1,5 @@
 #include "../library/dataStructures/List/list.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int main()
 {
@@ -9,17 +8,6 @@ int main()
     int size = 0;
     printf("Enter a size of your list:\n");
     scanf("%d", &size);
-    if (size == 0) {
-        int errorZero = 0;
-        insert(createListElement(6), 0, list);
-        insert(createListElement(2), 0, list);
-        printList(list);
-        printf("%d\n", getValue(retrieve(0, list, &errorZero)));
-        deleteElement(1, list);
-        printList(list);
-        removeList(list);
-        return 0;
-    }
 
     printf("Enter your list:\n");
     for (int i = 0; i < size; ++i) {
@@ -31,8 +19,12 @@ int main()
     printList(list);
 
     //Head and Tail test
-    printf("List head is: %d\n", getValue(head(list)));
-    printf("List tail is: %d\n", getValue(tail(list)));
+    if (size > 0) {
+        printf("List head is: %d\n", getValue(head(list)));
+        printf("List tail is: %d\n", getValue(tail(list)));
+    } else {
+        printf("No head, no tail\n");
+    }
 
     //InsertElement test
     int insertValue = 0;
@@ -91,7 +83,6 @@ int main()
     }
 
     removeListElement(listNumber);
-    removeListElement(previous);
     removeList(listLocate);
 
     return 0;

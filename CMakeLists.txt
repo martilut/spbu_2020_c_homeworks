@@ -8,8 +8,10 @@ set(SOURCE_LIB
         library/commonUtils/arrayOperations.c)
 
 set(LIST_LIB library/dataStructures/List/list.c)
+set(STACK_LIB library/dataStructures/Stack/stack.c library/dataStructures/Stack/stack.h)
 
 add_library(library ${SOURCE_LIB})
+add_library(stackLibrary ${STACK_LIB})
 add_library(listLibrary ${LIST_LIB})
 
 add_executable(1.1spiral.c tasks/1.1spiral.c)
@@ -19,5 +21,20 @@ add_executable(1.4simp.c tasks/1.4simp.c)
 add_executable(1.5max.c tasks/1.5max.c)
 target_link_libraries(1.2moving.c library)
 
+add_executable(2.1_decompose.c tasks_2/2.1_decompose.c)
+add_executable(2.2_bulls_and_cows.c tasks_2/2.2_bulls_and_cows.c)
+add_executable(2.3_zeros.c tasks_2/2.3_zeros.c)
+add_executable(2.4_sorting.c tasks_2/2.4_sorting.c)
+add_executable(2.5_factorial.c tasks_2/2.5_factorial.c)
+target_link_libraries(2.2_bulls_and_cows.c library)
+target_link_libraries(2.3_zeros.c library)
+target_link_libraries(2.4_sorting.c library)
+
 add_executable(3.2_murders tasks_3/3.2_murders.c)
 target_link_libraries(3.2_murders listLibrary)
+
+add_executable(4.1_postfix tasks_4/4.1_postfix.c)
+target_link_libraries(4.1_postfix stackLibrary)
+target_link_libraries(4.1_postfix library)
+add_executable(4.2_double tasks_4/4.2_double.c)
+target_link_libraries(4.2_double PRIVATE m)

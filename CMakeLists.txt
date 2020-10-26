@@ -30,6 +30,9 @@ target_link_libraries(2.2_bulls_and_cows.c library)
 target_link_libraries(2.3_zeros.c library)
 target_link_libraries(2.4_sorting.c library)
 
+add_executable(3.1_list tasks_3/test_list.c)
+target_link_libraries(3.1_list listLibrary)
+
 add_executable(3.2_murders tasks_3/3.2_murders.c)
 target_link_libraries(3.2_murders listLibrary)
 

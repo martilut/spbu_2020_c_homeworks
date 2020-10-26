@@ -2,15 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct ListElement {
+    int value;
+    struct ListElement* next;
+};
+
 struct List {
     ListElement* head;
     ListElement* tail;
     int size;
-};
-
-struct ListElement {
-    int value;
-    struct ListElement* next;
 };
 
 ListElement* tail(List* list)
@@ -28,11 +28,24 @@ int getSize(List* list)
     return list->size;
 }
 
-ListElement* createListElement(int value, ListElement* next)
+int getValue(ListElement* element)
+{
+    if (element == NULL) {
+        return NULL;
+    }
+    return element->value;
+}
+
+ListElement* getNext(ListElement* element)
+{
+    return element->next;
+}
+
+ListElement* createListElement(int value)
 {
     ListElement* element = (ListElement*)malloc(sizeof(ListElement));
     element->value = value;
-    element->next = next;
+    element->next = NULL;
     return element;
 }
 
@@ -88,7 +101,7 @@ int locate(ListElement* value, List* list)
 {
     int counter = 0;
     ListElement* element = list->head;
-    while (element != NULL && value->value != element->value) {
+    while (element != NULL && element != value) {
         ++counter;
         element = element->next;
     }
@@ -98,8 +111,13 @@ int locate(ListElement* value, List* list)
     return counter;
 }
 
-ListElement* retrieve(int position, List* list)
+ListElement* retrieve(int position, List* list, int* error)
 {
+    if (position < 0 || position >= list->size) {
+        *error = 1;
+        return list->head;
+    }
+  
     ListElement* element = list->head;
     while (position > 0) {
         --position;
@@ -127,13 +145,13 @@ bool deleteElement(int position, List* list)
             --position;
             previous = previous->next;
         }
-        if (previous->next == list->tail) {
-            free(previous->next);
+        ListElement* element = previous->next;
+        if (element == list->tail) {
             previous->next = NULL;
             list->tail = previous;
+            free(element);
         } else {
-            ListElement* element = previous->next;
-            previous->next = previous->next->next;
+            previous->next = element->next;
             free(element);
         }
     }
@@ -164,9 +182,15 @@ bool removeNextElement(ListElement* previous, List* list)
     return true;
 }
 
+void removeListElement(ListElement* element)
+{
+    free(element);
+}
+
 void removeList(List* list)
 {
-    for (int i = 0; i < list->size; ++i) {
+    int size = list->size;
+    for (int i = 0; i < size; ++i) {
         deleteElement(0, list);
     }
     free(list);

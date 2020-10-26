@@ -119,7 +119,7 @@ BinaryTreeNode* getParentMaxNode(BinaryTreeNode* node)
     return node;
 }
 
-bool removeRecursive(BinarySearchTree* binaryTree, BinaryTreeNode* node, int value, BinaryTreeNode* parent, enum Direction d)
+bool recursiveRemoveValue(BinarySearchTree* binaryTree, BinaryTreeNode* node, int value, BinaryTreeNode* parent, enum Direction d)
 {
     if (node->value == value) {
         if (isLeaf(node)) {
@@ -132,21 +132,26 @@ bool removeRecursive(BinarySearchTree* binaryTree, BinaryTreeNode* node, int val
             changeParent(d, parent, binaryTree, node->rightChild);
         }
         if (node->leftChild != NULL && node->rightChild != NULL) {
-            BinaryTreeNode* parentMaxNode = getParentMaxNode(node->leftChild);
-            BinaryTreeNode* maxNode = parentMaxNode->rightChild;
-            changeParent(d, parent, binaryTree, maxNode);
-            changeParent(right, parentMaxNode, binaryTree, maxNode->leftChild);
-            maxNode->leftChild = node->leftChild;
-            maxNode->rightChild = node->rightChild;
+            if (node->leftChild->rightChild == NULL) {
+                changeParent(d, parent, binaryTree, node->leftChild);
+                node->leftChild->rightChild = node->rightChild;
+            } else {
+                BinaryTreeNode* parentMaxNode = getParentMaxNode(node->leftChild);
+                BinaryTreeNode* maxNode = parentMaxNode->rightChild;
+                changeParent(d, parent, binaryTree, maxNode);
+                changeParent(right, parentMaxNode, binaryTree, maxNode->leftChild);
+                maxNode->leftChild = node->leftChild;
+                maxNode->rightChild = node->rightChild;
+            }
         }
         free(node);
         return true;
     }
     if (node->value > value && node->leftChild != NULL) {
-        return removeRecursive(binaryTree, node->leftChild , value, node, left);
+        return recursiveRemoveValue(binaryTree, node->leftChild , value, node, left);
     }
     if (node->value < value && node->rightChild != NULL) {
-        return removeRecursive(binaryTree, node->rightChild, value, node, right);
+        return recursiveRemoveValue(binaryTree, node->rightChild, value, node, right);
     }
     return false;
 }
@@ -156,7 +161,7 @@ bool removeValue(int value, BinarySearchTree *tree)
     if (isEmpty(tree)) {
         return false;
     }
-    return removeRecursive(tree, tree->root, value, NULL, none);
+    return recursiveRemoveValue(tree, tree->root, value, NULL, none);
 }
 
 void recursiveIncreasing(BinaryTreeNode* node)
@@ -203,4 +208,28 @@ void recursiveStraight(BinaryTreeNode* node)
 void printStraightOrder(BinarySearchTree* binaryTree)
 {
     return recursiveStraight(binaryTree->root);
+}
+
+void recursiveRemoveBinaryTree(BinarySearchTree* binaryTree, BinaryTreeNode* node, BinaryTreeNode* parent, enum Direction d)
+{
+    if (binaryTree->root == NULL) {
+        return;
+    }
+    if (isLeaf(node)) {
+        changeParent(d, parent, binaryTree, NULL);
+        free(node);
+    } else {
+        if (node->leftChild != NULL) {
+            recursiveRemoveBinaryTree(binaryTree, node->leftChild, node, left);
+        }
+        if (node->rightChild != NULL) {
+            recursiveRemoveBinaryTree(binaryTree, node->rightChild, node, right);
+        }
+    }
+}
+
+void removeBinaryTree(BinarySearchTree* binaryTree)
+{
+    recursiveRemoveBinaryTree(binaryTree, binaryTree->root, NULL, none);
+    free(binaryTree);
 }

@@ -13,5 +13,6 @@ bool removeValue(int value, BinarySearchTree *tree);
 void printIncreasingValues(BinarySearchTree* binaryTree);
 void printDecreasingValues(BinarySearchTree* binaryTree);
 void printStraightOrder(BinarySearchTree* binaryTree);
+void removeBinaryTree(BinarySearchTree* binaryTree);
 
 #endif // SPBU_2020_C_HOMEWORKS_BINARYSEARCHTREE_H

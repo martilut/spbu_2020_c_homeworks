@@ -195,17 +195,7 @@ void removeList(List* list)
     free(list);
 }
 
-ListElement* getNext(ListElement* element)
-{
-    return element->next;
-}
-
 void changeNextInCycle(ListElement* element, List* list)
 {
     element->next = list->head;
-}
-
-int getValue(ListElement* element)
-{
-    return element->value;
 }

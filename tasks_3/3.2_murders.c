@@ -11,7 +11,7 @@ int main()
     scanf("%d %d", &n, &m);
 
     for (int i = 0; i < n; ++i) {
-        insert(createListElement(i, NULL), i, list);
+        insert(createListElement(i), i, list);
     }
 
     ListElement* element = tail(list);
@@ -25,7 +25,8 @@ int main()
         removeNextElement(element, list);
         --n;
     }
-    printf("%d", getValue(retrieve(0, list)) + 1);
+    int error = 0;
+    printf("%d", getValue(retrieve(0, list, &error)) + 1);
     removeList(list);
     return 0;
 }

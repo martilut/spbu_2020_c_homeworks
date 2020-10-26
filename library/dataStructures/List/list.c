@@ -31,7 +31,7 @@ int getSize(List* list)
 int getValue(ListElement* element)
 {
     if (element == NULL) {
-        return NULL;
+        return -1;
     }
     return element->value;
 }

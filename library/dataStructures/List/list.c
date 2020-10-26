@@ -117,7 +117,6 @@ ListElement* retrieve(int position, List* list, int* error)
         *error = 1;
         return list->head;
     }
-  
     ListElement* element = list->head;
     while (position > 0) {
         --position;

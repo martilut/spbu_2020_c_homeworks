@@ -1,7 +1,7 @@
 #include "binarySearchTree.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 struct BinaryTreeNode {
     int value;
@@ -13,11 +13,11 @@ struct BinarySearchTree {
     struct BinaryTreeNode* root;
 };
 
-enum Direction { left, right, none };
+enum Direction { LEFT, RIGHT, NONE };
 
 BinarySearchTree* createBinaryTree()
 {
-    BinarySearchTree* binaryTree = (BinarySearchTree *)malloc(sizeof(BinarySearchTree));
+    BinarySearchTree* binaryTree = (BinarySearchTree*)malloc(sizeof(BinarySearchTree));
     binaryTree->root = NULL;
     return binaryTree;
 }
@@ -99,13 +99,13 @@ bool addValue(int value, BinarySearchTree* binaryTree)
 
 bool changeParent(enum Direction d, BinaryTreeNode* parent, BinarySearchTree* tree, BinaryTreeNode* newNode)
 {
-    if (d == left) {
+    if (d == LEFT) {
         parent->leftChild = newNode;
     }
-    if (d == right) {
+    if (d == RIGHT) {
         parent->rightChild = newNode;
     }
-    if (d == none) {
+    if (d == NONE) {
         tree->root = newNode;
     }
     return true;
@@ -139,7 +139,7 @@ bool recursiveRemoveValue(BinarySearchTree* binaryTree, BinaryTreeNode* node, in
                 BinaryTreeNode* parentMaxNode = getParentMaxNode(node->leftChild);
                 BinaryTreeNode* maxNode = parentMaxNode->rightChild;
                 changeParent(d, parent, binaryTree, maxNode);
-                changeParent(right, parentMaxNode, binaryTree, maxNode->leftChild);
+                changeParent(RIGHT, parentMaxNode, binaryTree, maxNode->leftChild);
                 maxNode->leftChild = node->leftChild;
                 maxNode->rightChild = node->rightChild;
             }
@@ -148,20 +148,20 @@ bool recursiveRemoveValue(BinarySearchTree* binaryTree, BinaryTreeNode* node, in
         return true;
     }
     if (node->value > value && node->leftChild != NULL) {
-        return recursiveRemoveValue(binaryTree, node->leftChild , value, node, left);
+        return recursiveRemoveValue(binaryTree, node->leftChild, value, node, LEFT);
     }
     if (node->value < value && node->rightChild != NULL) {
-        return recursiveRemoveValue(binaryTree, node->rightChild, value, node, right);
+        return recursiveRemoveValue(binaryTree, node->rightChild, value, node, RIGHT);
     }
     return false;
 }
 
-bool removeValue(int value, BinarySearchTree *tree)
+bool removeValue(int value, BinarySearchTree* tree)
 {
     if (isEmpty(tree)) {
         return false;
     }
-    return recursiveRemoveValue(tree, tree->root, value, NULL, none);
+    return recursiveRemoveValue(tree, tree->root, value, NULL, NONE);
 }
 
 void recursiveIncreasing(BinaryTreeNode* node)
@@ -220,16 +220,16 @@ void recursiveRemoveBinaryTree(BinarySearchTree* binaryTree, BinaryTreeNode* nod
         free(node);
     } else {
         if (node->leftChild != NULL) {
-            recursiveRemoveBinaryTree(binaryTree, node->leftChild, node, left);
+            recursiveRemoveBinaryTree(binaryTree, node->leftChild, node, LEFT);
         }
         if (node->rightChild != NULL) {
-            recursiveRemoveBinaryTree(binaryTree, node->rightChild, node, right);
+            recursiveRemoveBinaryTree(binaryTree, node->rightChild, node, RIGHT);
         }
     }
 }
 
 void removeBinaryTree(BinarySearchTree* binaryTree)
 {
-    recursiveRemoveBinaryTree(binaryTree, binaryTree->root, NULL, none);
+    recursiveRemoveBinaryTree(binaryTree, binaryTree->root, NULL, NONE);
     free(binaryTree);
 }

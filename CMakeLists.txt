@@ -7,11 +7,12 @@ set(SOURCE_LIB
         library/commonUtils/numericOperations.c
         library/commonUtils/arrayOperations.c)
 
+set(LIST_LIB library/dataStructures/List/list.c)
 set(STACK_LIB library/dataStructures/Stack/stack.c library/dataStructures/Stack/stack.h)
 
 add_library(library ${SOURCE_LIB})
 add_library(stackLibrary ${STACK_LIB})
-add_library(listLibrary library/dataStructures/List/list.c)
+add_library(listLibrary ${LIST_LIB})
 
 add_executable(1.1spiral.c tasks/1.1spiral.c)
 add_executable(1.2moving.c tasks/1.2moving.c)
@@ -31,6 +32,9 @@ target_link_libraries(2.4_sorting.c library)
 
 add_executable(3.1_list tasks_3/test_list.c)
 target_link_libraries(3.1_list listLibrary)
+
+add_executable(3.2_murders tasks_3/3.2_murders.c)
+target_link_libraries(3.2_murders listLibrary)
 
 add_executable(4.1_postfix tasks_4/4.1_postfix.c)
 target_link_libraries(4.1_postfix stackLibrary)

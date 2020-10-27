@@ -24,3 +24,18 @@ void printArray(int array[], int n)
         printf("%d ", array[i]);
     }
 };
+
+char* scanString()
+{
+    int size = 0;
+    char* string = (char*)malloc(sizeof(char));
+    char sign = '\0';
+    while ((sign != ' ') && (sign != '\n')) {
+        string = realloc(string, (size + 2) * sizeof(char));
+        scanf("%c", &sign);
+        string[size] = sign;
+        ++size;
+    }
+    string[size - 1] = '\0';
+    return string;
+}

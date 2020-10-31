@@ -23,10 +23,15 @@ ListElement* head(List* list)
     return list->head;
 }
 
+int getSize(List* list)
+{
+    return list->size;
+}
+
 int getValue(ListElement* element)
 {
     if (element == NULL) {
-        return NULL;
+        return -1;
     }
     return element->value;
 }
@@ -112,7 +117,6 @@ ListElement* retrieve(int position, List* list, int* error)
         *error = 1;
         return list->head;
     }
-
     ListElement* element = list->head;
     while (position > 0) {
         --position;
@@ -154,6 +158,29 @@ bool deleteElement(int position, List* list)
     return true;
 }
 
+bool removeNextElement(ListElement* previous, List* list)
+{
+    if (locate(previous, list) == -1) {
+        return false;
+    }
+    if (previous->next == NULL) {
+        previous->next = list->head;
+    }
+
+    ListElement* element = previous->next;
+
+    if (previous->next == list->tail) {
+        list->tail = previous;
+    }
+    if (previous->next == list->head) {
+        list->head = list->head->next;
+    }
+    previous->next = element->next;
+    free(element);
+    list->size--;
+    return true;
+}
+
 void removeListElement(ListElement* element)
 {
     free(element);
@@ -166,4 +193,9 @@ void removeList(List* list)
         deleteElement(0, list);
     }
     free(list);
+}
+
+void changeNextInCycle(ListElement* element, List* list)
+{
+    element->next = list->head;
 }

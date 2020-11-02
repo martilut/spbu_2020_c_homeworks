@@ -28,6 +28,7 @@ int main()
     printf("Enter a number to add in the tree:\n");
     scanf("%d", &number);
     addValue(number, tree);
+    printStraightOrder(tree);
 
     // ifExist check
     printf("Enter a number to find in the tree:\n");

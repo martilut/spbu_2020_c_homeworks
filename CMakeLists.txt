@@ -47,5 +47,5 @@ target_link_libraries(4.2_double PRIVATE m)
 add_executable(4.3_binaries tasks_4/4.3_binaries.c)
 target_link_libraries(4.3_binaries PRIVATE m)
 
-add_executable(5.1_testBST tasks_5/5.1_testBST.c)
-target_link_libraries(5.1_testBST bstLibrary)
+add_executable(5.2_testAVL tasks_5/5.2_testAVL.c)
+target_link_libraries(5.2_testAVL bstLibrary)

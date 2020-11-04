@@ -80,8 +80,7 @@ BinaryTreeNode* balanceBranch(BinaryTreeNode* root)
         }
         return rotateLeft(root);
     }
-    if (getBalanceFactor(root) == -2)
-    {
+    if (getBalanceFactor(root) == -2) {
         if (getBalanceFactor(root->leftChild) > 0) {
             root->leftChild = rotateLeft(root->leftChild);
         }
@@ -100,7 +99,8 @@ bool isLeaf(BinaryTreeNode* node)
     return node->leftChild == NULL && node->rightChild == NULL;
 }
 
-BinaryTreeNode* balanceTree(BinaryTreeNode* currentNode) {
+BinaryTreeNode* balanceTree(BinaryTreeNode* currentNode)
+{
     if (isLeaf(currentNode)) {
         updateHeight(currentNode);
         return currentNode;

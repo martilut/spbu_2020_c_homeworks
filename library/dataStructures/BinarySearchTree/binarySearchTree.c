@@ -205,8 +205,7 @@ void printDecreasingValues(BinarySearchTree* binaryTree)
 void recursiveStraight(BinaryTreeNode* node)
 {
     if (node != NULL) {
-        printf("(");
-        printf("%d ", node->value);
+        printf("(%d ", node->value);
         recursiveStraight(node->leftChild);
         recursiveStraight(node->rightChild);
         printf(")");
@@ -235,13 +234,9 @@ void recursiveRemoveBinaryTree(BinarySearchTree* binaryTree, BinaryTreeNode* nod
     free(node);
     if (leftChild != NULL) {
         recursiveRemoveBinaryTree(binaryTree, leftChild);
-    } else {
-        free(leftChild);
     }
     if (rightChild != NULL) {
         recursiveRemoveBinaryTree(binaryTree, rightChild);
-    } else {
-        free(rightChild);
     }
 }
 

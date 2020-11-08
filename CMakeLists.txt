@@ -34,7 +34,6 @@ target_link_libraries(2.4_sorting.c library)
 
 add_executable(3.1_list tasks_3/test_list.c)
 target_link_libraries(3.1_list listLibrary)
-
 add_executable(3.2_murders tasks_3/3.2_murders.c)
 target_link_libraries(3.2_murders listLibrary)
 
@@ -47,5 +46,10 @@ target_link_libraries(4.2_double PRIVATE m)
 add_executable(4.3_binaries tasks_4/4.3_binaries.c)
 target_link_libraries(4.3_binaries PRIVATE m)
 
+add_executable(5.1_testBST tasks_5/5.1_testBST.c)
+target_link_libraries(5.1_testBST bstLibrary)
+
 add_executable(5.2_testAVL tasks_5/5.2_testAVL.c)
 target_link_libraries(5.2_testAVL bstLibrary)
+
+add_executable(test_1.1_sort test_1/1.1_sort.c)

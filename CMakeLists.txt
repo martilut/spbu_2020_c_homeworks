@@ -9,12 +9,12 @@ set(SOURCE_LIB
 
 set(LIST_LIB library/dataStructures/List/list.c)
 set(STACK_LIB library/dataStructures/Stack/stack.c library/dataStructures/Stack/stack.h)
-set(AVL_LIB library/dataStructures/BinarySearchTree/AVL.c library/dataStructures/BinarySearchTree/AVL.h)
+set(BST_LIB library/dataStructures/BinarySearchTree/binarySearchTree.c library/dataStructures/BinarySearchTree/binarySearchTree.h)
 
 add_library(library ${SOURCE_LIB})
 add_library(stackLibrary ${STACK_LIB})
 add_library(listLibrary ${LIST_LIB})
-add_library(avlLibrary ${AVL_LIB})
+add_library(bstLibrary ${BST_LIB})
 
 add_executable(1.1spiral.c tasks/1.1spiral.c)
 add_executable(1.2moving.c tasks/1.2moving.c)
@@ -48,4 +48,4 @@ add_executable(4.3_binaries tasks_4/4.3_binaries.c)
 target_link_libraries(4.3_binaries PRIVATE m)
 
 add_executable(5.2_testAVL tasks_5/5.2_testAVL.c)
-target_link_libraries(5.2_testAVL avlLibrary)
+target_link_libraries(5.2_testAVL bstLibrary)

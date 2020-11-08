@@ -1,5 +1,5 @@
-#ifndef SPBU_2020_C_HOMEWORKS_AVL_H
-#define SPBU_2020_C_HOMEWORKS_AVL_H
+#ifndef SPBU_2020_C_HOMEWORKS_BINARYSEARCHTREE_H
+#define SPBU_2020_C_HOMEWORKS_BINARYSEARCHTREE_H
 #include <stdbool.h>
 
 typedef struct BinarySearchTree BinarySearchTree;
@@ -13,4 +13,4 @@ void printDecreasingValues(BinarySearchTree* binaryTree);
 void printStraightOrder(BinarySearchTree* binaryTree);
 void removeBinaryTree(BinarySearchTree* binaryTree);
 
-#endif // SPBU_2020_C_HOMEWORKS_AVL_H
+#endif // SPBU_2020_C_HOMEWORKS_BINARYSEARCHTREE_H

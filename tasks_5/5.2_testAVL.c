@@ -1,4 +1,4 @@
-#include "../library/dataStructures/BinarySearchTree/binarySearchTree.h"
+#include "../library/dataStructures/BinarySearchTree/AVL.h"
 #include <stdio.h>
 
 int main()

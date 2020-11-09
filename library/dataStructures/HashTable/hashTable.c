@@ -59,7 +59,7 @@ float getLoadFactor(HashTable* table)
 int getHash(char* key, int polynomFactor, int module)
 {
     int hash = 0;
-    int length = strlen(key);
+    int length = (int)strlen(key);
     for (int i = 0; i < length; ++i) {
         hash += ((hash * polynomFactor) + (key[i] - 'A')) % module;
     }
@@ -69,23 +69,6 @@ int getHash(char* key, int polynomFactor, int module)
 int getIndex(int hash, int count, int bucketCount)
 {
     return (hash + ((count + 1) * count / 2)) % bucketCount;
-}
-
-int getValueCount(HashTable* hashTable, char* key)
-{
-    int count = 1;
-    int hash = getHash(key, hashTable->polynomFactor, hashTable->bucketCount);
-    int index = getIndex(hash, count, hashTable->bucketCount);
-    while (hashTable->types[index] == USED) {
-        if (index == hash) {
-            return -1;
-        }
-        if (strcmp(hashTable->hashArray[index]->key, key) == 0) {
-            return hashTable->hashArray[index]->valueCount;
-        }
-        index = getIndex(hash, count, hashTable->bucketCount);
-    }
-    return 0;
 }
 
 void addElementToHashTable(HashTable* hashTable, char* key, int valueCount, int insertionCount)
@@ -142,4 +125,102 @@ void addElement(HashTable* hashTable, char* key, int valueCount, int insertionCo
     if (getLoadFactor(hashTable) > maxLoadFactor) {
         expandTable(hashTable);
     }
+}
+void removeHashTable(HashTable* hashTable)
+{
+    for (int i = 0; i < hashTable->bucketCount; ++i) {
+        free(hashTable->hashArray[i]);
+    }
+    free(hashTable->hashArray);
+    free(hashTable->types);
+    free(hashTable);
+
+}
+
+int getWordCount(HashTable* hashTable)
+{
+    int wordCount = 0;
+    for (int i = 0; i < hashTable->bucketCount; ++i) {
+        if (hashTable->types[i] == USED) {
+            wordCount += hashTable->hashArray[i]->valueCount;
+        }
+    }
+    return wordCount;
+}
+
+void printTopTenWords(HashTable* hashTable)
+{
+    int maxWordCount = (hashTable->elementCount >= 10 ? 10 : hashTable->elementCount);
+    HashElement** maxWords = (HashElement**)malloc(maxWordCount * sizeof(HashElement*));
+    memset(maxWords, 0, maxWordCount * sizeof(HashElement*));
+    for (int i = 0; i < hashTable->bucketCount; ++i) {
+        if (hashTable->types[i] == USED) {
+            HashElement* currentElement = hashTable->hashArray[i];
+            int k = 0;
+            while (maxWords[k] != 0 && k < maxWordCount && currentElement->valueCount < maxWords[k]->valueCount) {
+                ++k;
+            }
+            while (k < maxWordCount - 1) {
+                HashElement* temp = maxWords[k];
+                maxWords[k] = currentElement;
+                currentElement = temp;
+                ++k;
+            }
+            if (k == maxWordCount) {
+                continue;
+            }
+            if (k == maxWordCount - 1) {
+                maxWords[k] = currentElement;
+                continue;
+            }
+        }
+    }
+    printf("%d most common words:\n", maxWordCount);
+    for (int i = 0; i < maxWordCount; ++i) {
+        printf("  %d : %s, %d times\n", i + 1, maxWords[i]->key, maxWords[i]->valueCount);
+        free(maxWords[i]);
+    }
+    free(maxWords);
+}
+
+void getMaxInsertionCount(HashTable* hashTable)
+{
+    int maxCount = 0;
+    for (int i = 0; i < hashTable->bucketCount; ++i) {
+        if (hashTable->types[i] == USED) {
+            HashElement* element = hashTable->hashArray[i];
+            if (element->insertionCount > maxCount) {
+                maxCount = element->insertionCount;
+            }
+        }
+    }
+    printf("2) The maximum number of attempts to insert an element is %d\n", maxCount);
+    printf("   Here's the list of words that had this amount of attempts:\n");
+    for (int i = 0; i < hashTable->bucketCount; ++i) {
+        if (hashTable->types[i] == USED && hashTable->hashArray[i]->insertionCount == maxCount) {
+            printf("  - %s\n", hashTable->hashArray[i]->key);
+        }
+    }
+}
+
+int getAverageInsertionCount(HashTable* hashTable)
+{
+    int sum = 0;
+    for (int i = 0; i < hashTable->bucketCount; ++i) {
+        if (hashTable->types[i] == USED) {
+            sum += hashTable->hashArray[i]->insertionCount;
+        }
+    }
+    return sum / hashTable->elementCount;
+}
+
+int getEmptyBucketCount(HashTable* hashTable)
+{
+    int emptyBucketCount = 0;
+    for (int i = 0; i < hashTable->bucketCount; ++i) {
+        if (hashTable->types[i] == EMPTY) {
+            ++emptyBucketCount;
+        }
+    }
+    return emptyBucketCount;
 }

@@ -9,6 +9,11 @@ HashTable* createHashTable(int polynomFactor);
 float getLoadFactor(HashTable* table);
 int getHash(char* key, int polynomFactor, int module);
 void addElement(HashTable* hashTable, char* key, int valueCount, int insertionCount);
-int getValueCount(HashTable* hashTable, char* key);
+void removeHashTable(HashTable* hashTable);
+void printTopTenWords(HashTable* hashTable);
+int getAverageInsertionCount(HashTable* hashTable);
+void getMaxInsertionCount(HashTable* hashTable);
+int getWordCount(HashTable* hashTable);
+int getEmptyBucketCount(HashTable* hashTable);
 
 #endif // SPBU_2020_C_HOMEWORKS_HASHTABLE_H

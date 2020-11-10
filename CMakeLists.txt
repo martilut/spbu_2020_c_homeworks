@@ -50,3 +50,5 @@ add_executable(5.1_testBST tasks_5/5.1_testBST.c)
 target_link_libraries(5.1_testBST bstLibrary)
 
 add_executable(test_1.1_sort test_1/1.1_sort.c)
+
+add_executable(test_2.2_dates test_2/2.2_dates.c)

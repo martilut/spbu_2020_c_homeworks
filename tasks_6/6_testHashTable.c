@@ -1,8 +1,8 @@
 #include "../library/dataStructures/HashTable/hashTable.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 char* scanWord(FILE* testFile, char firstSign)
 {

@@ -9,7 +9,7 @@ char* scanDate(FILE* testFile, char firstSign)
     if (firstSign >= 48 && firstSign <= 57) {
         word[0] = firstSign;
     } else {
-       --i;
+        --i;
     }
     while ((word[i] = (char)fgetc(testFile)) != EOF) {
         if ((word[i] >= 48 && word[i] <= 57) || word[i] == '.') {
@@ -54,8 +54,8 @@ int getDay(char* date)
 
 char* getMinDate(char* date, char* minDate)
 {
-    int dateValues[3] = {getYear(date), getMonth(date), getDay(date)};
-    int minDateValues[3] = {getYear(minDate), getMonth(minDate), getDay(minDate)};
+    int dateValues[3] = { getYear(date), getMonth(date), getDay(date) };
+    int minDateValues[3] = { getYear(minDate), getMonth(minDate), getDay(minDate) };
     int i = 0;
     while (dateValues[i] == minDateValues[i]) {
         ++i;

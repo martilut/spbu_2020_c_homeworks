@@ -61,7 +61,7 @@ int getHash(char* key, int polynomFactor, int module)
     int hash = 0;
     int length = (int)strlen(key);
     for (int i = 0; i < length; ++i) {
-        hash += ((hash * polynomFactor) + (key[i] - 'A')) % module;
+        hash += ((hash * polynomFactor) + (key[i] - 'a')) % module;
     }
     return hash;
 }
@@ -126,6 +126,7 @@ void addElement(HashTable* hashTable, char* key, int valueCount, int insertionCo
         expandTable(hashTable);
     }
 }
+
 void removeHashTable(HashTable* hashTable)
 {
     for (int i = 0; i < hashTable->bucketCount; ++i) {
@@ -134,7 +135,6 @@ void removeHashTable(HashTable* hashTable)
     free(hashTable->hashArray);
     free(hashTable->types);
     free(hashTable);
-
 }
 
 int getWordCount(HashTable* hashTable)

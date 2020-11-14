@@ -1,4 +1,5 @@
 #include "hashTable.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,14 +85,22 @@ void addElementToHashTable(HashTable* hashTable, char* key, int valueCount, int 
             }
             return;
         }
-        index = getIndex(hash, count, hashTable->bucketCount);
         ++count;
+        index = getIndex(hash, count, hashTable->bucketCount);
     }
     hashTable->hashArray[index] = createHashElement(key);
     hashTable->hashArray[index]->valueCount = valueCount;
     hashTable->hashArray[index]->insertionCount = insertionCount;
     hashTable->types[index] = USED;
     hashTable->elementCount++;
+}
+
+void removeHashElement(HashElement* element)
+{
+    if (element->key != NULL) {
+        free(element->key);
+    }
+    free(element);
 }
 
 void expandTable(HashTable* hashTable)
@@ -113,6 +122,7 @@ void expandTable(HashTable* hashTable)
             continue;
         HashElement* element = oldArray[i];
         addElementToHashTable(hashTable, element->key, element->valueCount, element->insertionCount);
+        free(oldArray[i]);
     }
 
     free(oldArray);
@@ -127,10 +137,34 @@ void addElement(HashTable* hashTable, char* key, int valueCount, int insertionCo
     }
 }
 
+bool removeElementByKey(HashTable* hashTable, char* key)
+{
+    int count = 1;
+    int hash = getHash(key, hashTable->polynomFactor, hashTable->bucketCount);
+    int currentIndex = getIndex(hash, count, hashTable->bucketCount);
+    int index = currentIndex;
+    while (hashTable->types[currentIndex] == USED) {
+        if (strcmp(hashTable->hashArray[currentIndex]->key, key) == 0) {
+            removeHashElement(hashTable->hashArray[currentIndex]);
+            hashTable->types[currentIndex] = EMPTY;
+            hashTable->elementCount--;
+            return true;
+        }
+        currentIndex = getIndex(hash, count, hashTable->bucketCount);
+        ++count;
+        if (currentIndex == index) {
+            return false;
+        }
+    }
+    return false;
+}
+
 void removeHashTable(HashTable* hashTable)
 {
     for (int i = 0; i < hashTable->bucketCount; ++i) {
-        free(hashTable->hashArray[i]);
+        if (hashTable->types[i] == USED) {
+            removeHashElement(hashTable->hashArray[i]);
+        }
     }
     free(hashTable->hashArray);
     free(hashTable->types);
@@ -148,42 +182,46 @@ int getWordCount(HashTable* hashTable)
     return wordCount;
 }
 
-void printTopTenWords(HashTable* hashTable)
+void printTopWords(HashTable* hashTable, int n)
 {
-    int maxWordCount = (hashTable->elementCount >= 10 ? 10 : hashTable->elementCount);
-    HashElement** maxWords = (HashElement**)malloc(maxWordCount * sizeof(HashElement*));
-    memset(maxWords, 0, maxWordCount * sizeof(HashElement*));
+    if (n > hashTable->elementCount) {
+        printf("This number is too big\n");
+        return;
+    }
+    HashElement** maxWords = (HashElement**)malloc(n * sizeof(HashElement*));
+    memset(maxWords, 0, n * sizeof(HashElement*));
     for (int i = 0; i < hashTable->bucketCount; ++i) {
         if (hashTable->types[i] == USED) {
             HashElement* currentElement = hashTable->hashArray[i];
             int k = 0;
-            while (maxWords[k] != 0 && k < maxWordCount && currentElement->valueCount < maxWords[k]->valueCount) {
-                ++k;
+            while (maxWords[k] != 0 && k < n && currentElement->valueCount < maxWords[k]->valueCount) {
+                ++k; // k is currentElement index in top words list
             }
-            while (k < maxWordCount - 1) {
+            while (k < n - 1) { // if k is less than the last index we put currentElement there and move forward all the following elements
                 HashElement* temp = maxWords[k];
                 maxWords[k] = currentElement;
                 currentElement = temp;
                 ++k;
             }
-            if (k == maxWordCount) {
+            if (k == n) { // if k is greater than last index currentElement can't be in the list
                 continue;
             }
-            if (k == maxWordCount - 1) {
+            if (k ==
+                n - 1) { // if k is the last index we put currentElement there
                 maxWords[k] = currentElement;
                 continue;
             }
         }
     }
-    printf("%d most common words:\n", maxWordCount);
-    for (int i = 0; i < maxWordCount; ++i) {
+    printf("%d most common words:\n", n);
+    for (int i = 0; i < n; ++i) {
         printf("  %d : %s, %d times\n", i + 1, maxWords[i]->key, maxWords[i]->valueCount);
-        free(maxWords[i]);
+        removeHashElement(maxWords[i]);
     }
     free(maxWords);
 }
 
-void getMaxInsertionCount(HashTable* hashTable)
+void printMaxInsertionCount(HashTable* hashTable)
 {
     int maxCount = 0;
     for (int i = 0; i < hashTable->bucketCount; ++i) {

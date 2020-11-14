@@ -29,12 +29,12 @@ char* scanWord(FILE* testFile, char firstSign)
             word[i] = (char)tolower((int)word[i]);
             ++i;
         } else {
-          word[i] = '\0';
-          if (isLetter(word[0])) {
-              return word;
-          } else {
-              return NULL;
-          }
+            word[i] = '\0';
+            if (isLetter(word[0])) {
+                return word;
+            } else {
+                return NULL;
+            }
         }
         word = realloc(word, (startWordLength + i) * sizeof(char));
     }

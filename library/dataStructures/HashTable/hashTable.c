@@ -206,8 +206,7 @@ void printTopWords(HashTable* hashTable, int n)
             if (k == n) { // if k is greater than last index currentElement can't be in the list
                 continue;
             }
-            if (k ==
-                n - 1) { // if k is the last index we put currentElement there
+            if (k == n - 1) { // if k is the last index we put currentElement there
                 maxWords[k] = currentElement;
                 continue;
             }

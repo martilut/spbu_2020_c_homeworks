@@ -136,7 +136,6 @@ void addElement(HashTable* hashTable, char* key, int valueCount, int insertionCo
     if (getLoadFactor(hashTable) > maxLoadFactor) {
         expandTable(hashTable);
     }
-
 }
 
 bool removeElementByKey(HashTable* hashTable, char* key)

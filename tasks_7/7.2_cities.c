@@ -76,7 +76,6 @@ bool addCityToState(int** states, Graph* graph, int stateIndex, int citiesCount,
                 minLength = currentLength;
                 city = j;
             }
-
         }
     }
     if (city == -1) {

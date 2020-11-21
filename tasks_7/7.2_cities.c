@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+const int MAX_LENGTH = 1000000000;
+
 bool isNumber(char sign)
 {
     return sign >= '0' && sign <= '9';
@@ -64,7 +66,7 @@ bool isUsed(int* usedCities, int usedCitiesCount, int city)
 
 bool addCityToState(int** states, Graph* graph, int stateIndex, int citiesCount, int* usedCities, int usedCitiesCount)
 {
-    int minLength = 10000000;
+    int minLength = MAX_LENGTH;
     int city = -1;
     for (int i = 0; i < citiesCount; ++i) {
         if (states[stateIndex][i] == -1) {

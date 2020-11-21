@@ -83,6 +83,11 @@ void simplifiedDFS(Graph* graph, int currentVertex, int startVertex) // works on
     }
 }
 
+int getMatrixValue(Graph* graph, int i, int j)
+{
+    return graph->matrix[i][j];
+}
+
 void removeGraph(Graph* graph)
 {
     for (int i = 0; i < graph->countVertex; ++i) {

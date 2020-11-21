@@ -51,7 +51,7 @@ target_link_libraries(4.3_binaries PRIVATE m)
 add_executable(5.1_testBST tasks_5/5.1_testBST.c)
 target_link_libraries(5.1_testBST bstLibrary)
 
-add_executable(7.1_students tasks_7/7.1_students.c)
-target_link_libraries(7.1_students graphLibrary)
+add_executable(7.2_cities tasks_7/7.2_cities.c)
+target_link_libraries(7.2_cities graphLibrary)
 
 add_executable(test_1.1_sort test_1/1.1_sort.c)

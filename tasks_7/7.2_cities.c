@@ -107,7 +107,7 @@ void printStates(int** states, int stateCount, int citiesCount)
 
 int main()
 {
-    FILE* file = fopen("/home/felix/spbu_2020_c_homeworks/tasks_7/7.2_testFile.txt", "r");
+    FILE* file = fopen("7.2_testFile.txt", "r");
 
     int citiesCount = scanNumber(file);
     int edgesCount = scanNumber(file);

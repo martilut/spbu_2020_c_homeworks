@@ -55,3 +55,5 @@ add_executable(5.2_testAVL tasks_5/5.2_testAVL.c)
 target_link_libraries(5.2_testAVL avlLibrary)
 
 add_executable(test_1.1_sort test_1/1.1_sort.c)
+
+add_executable(test_2.1_fibbonachi test_2/2.1_fibbonachi.c)

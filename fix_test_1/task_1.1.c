@@ -31,27 +31,8 @@ int scanNumber(FILE* file)
     return number;
 }
 
-int main()
+bool isSymmetric(List* list)
 {
-    List* list = createList();
-
-    FILE* file = fopen("testFile.txt", "r");
-
-    int k = 1;
-    int i = 0;
-
-    while (k > 0){
-        k = scanNumber(file);
-        if (k > 0) {
-            insert(createListElement(k), i, list);
-            ++i;
-        } else {
-            insert(createListElement(-k), i, list);
-            break;
-        }
-    }
-    fclose(file);
-
     int size = getSize(list);
     printList(list);
     ListElement* start = head(list);
@@ -62,12 +43,40 @@ int main()
             start = getNext(start);
             end = getPrevious(end);
         } else {
-            printf("List is not symmetric\n");
             return 0;
         }
     }
+    return 1;
+}
 
-    printf("List is symmetric\n");
+int main()
+{
+    List* list = createList();
+
+    FILE* file = fopen("testFile.txt", "r");
+
+    int k = 1;
+    int i = 0;
+
+    while (k > 0) {
+        k = scanNumber(file);
+        if (k > 0) {
+            insert(createListElement(k), i, list);
+            ++i;
+        } else {
+            insert(createListElement(-k), i, list);
+            break;
+        }
+    }
+
+    fclose(file);
+
+    if (isSymmetric(list)) {
+        printf("List is symmetric\n");
+    } else {
+        printf("List is not symmetric\n");
+    }
+
     removeList(list);
 
     return 0;

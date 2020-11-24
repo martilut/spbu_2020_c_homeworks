@@ -19,13 +19,13 @@ int main()
     int x = 0;
     int y = 0;
 
-    printf("Enter the amount of strings and columns int the first matrix:\n");
+    printf("Enter the amount of columns and strings int the first matrix:\n");
     scanf("%d %d", &n, &m);
     printf("Enter the first matrix:\n");
     Matrix* firstMatrix = createMatrix(n, m);
     fillMatrix(firstMatrix, n, m);
 
-    printf("Enter the amount of strings and columns int the second matrix:\n");
+    printf("Enter the amount of columns and strings int the second matrix:\n");
     scanf("%d %d", &x, &y);
     printf("Enter the second matrix:\n");
     Matrix* secondMatrix = createMatrix(x, y);

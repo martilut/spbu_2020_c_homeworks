@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -16,7 +17,7 @@ Matrix* createMatrix(int columns, int strings)
     newMatrix->matrix = (int**)malloc(strings * sizeof(int*));
     for (int i = 0; i < strings; ++i) {
         newMatrix->matrix[i] = (int*)malloc(columns * sizeof(int));
-        memset(newMatrix->matrix[i], NULL, columns * sizeof(int));
+        memset(newMatrix->matrix[i], (int)NULL, columns * sizeof(int));
     }
     return newMatrix;
 }
@@ -76,6 +77,16 @@ Matrix* multiplyMatrix(Matrix* firstMatrix, Matrix* secondMatrix)
         }
     }
     return resultMatrix;
+}
+
+void printMatrix(Matrix* matrix)
+{
+    for (int i = 0; i < matrix->strings; ++i) {
+        for (int j = 0; j < matrix->columns; ++j) {
+            printf("%d ", matrix->matrix[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 void removeMatrix(Matrix* matrix)

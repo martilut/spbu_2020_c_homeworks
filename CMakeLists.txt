@@ -60,3 +60,6 @@ add_executable(test_1.1_sort test_1/1.1_sort.c)
 
 add_executable(test_2.1_fibbonachi test_2/2.1_fibbonachi.c)
 add_executable(test_2.2_dates test_2/2.2_dates.c)
+
+add_executable(fix_test_1.2 fix_test_1/task_1.2.c)
+target_link_libraries(fix_test_1.2 matrixLibrary)

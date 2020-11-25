@@ -11,12 +11,14 @@ set(LIST_LIB library/dataStructures/List/list.c)
 set(STACK_LIB library/dataStructures/Stack/stack.c library/dataStructures/Stack/stack.h)
 set(BST_LIB library/dataStructures/BinarySearchTree/binarySearchTree.c library/dataStructures/BinarySearchTree/binarySearchTree.h)
 set(AVL_LIB library/dataStructures/BinarySearchTree/AVL.c library/dataStructures/BinarySearchTree/AVL.h)
+set(HASHTABLE_LIB library/dataStructures/HashTable/hashTable.c library/dataStructures/HashTable/hashTable.h)
 
 add_library(library ${SOURCE_LIB})
 add_library(stackLibrary ${STACK_LIB})
 add_library(listLibrary ${LIST_LIB})
 add_library(bstLibrary ${BST_LIB})
 add_library(avlLibrary ${AVL_LIB})
+add_library(hashTableLibrary ${HASHTABLE_LIB})
 
 add_executable(1.1spiral.c tasks/1.1spiral.c)
 add_executable(1.2moving.c tasks/1.2moving.c)
@@ -53,6 +55,9 @@ target_link_libraries(5.1_testBST bstLibrary)
 
 add_executable(5.2_testAVL tasks_5/5.2_testAVL.c)
 target_link_libraries(5.2_testAVL avlLibrary)
+
+add_executable(6_testHashTable tasks_6/6_testHashTable.c)
+target_link_libraries(6_testHashTable hashTableLibrary)
 
 add_executable(test_1.1_sort test_1/1.1_sort.c)
 

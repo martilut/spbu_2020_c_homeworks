@@ -3,6 +3,32 @@
 #include <stdlib.h>
 #include <string.h>
 
+void scanPairs(Edge** edges, int* lazyStudents, int countPairs, int lazyStudentsCount)
+{
+    for (int i = 0; i < countPairs; ++i) {
+        int start = 0;
+        int end = 0;
+        scanf("%d %d", &start, &end);
+        if (end != -1) {
+            edges[i] = createEdge(start - 1, end - 1, 1, 1);
+        } else {
+            lazyStudents[lazyStudentsCount] = start;
+            ++lazyStudentsCount;
+        }
+    }
+}
+
+void printStudents(Graph* graph, int* lazyStudents, int lazyStudentsCount)
+{
+    for (int i = 0; i < 3; ++i) {
+        printf("%d passed his own variant\n", i + 1);
+        simplifiedDFS(graph, i, i);
+    }
+    for (int i = 0; i < lazyStudentsCount; ++i) {
+        printf("%d didn't pass anything\n", lazyStudents[i]);
+    }
+}
+
 int main()
 {
     int countVertex = 0;
@@ -18,27 +44,11 @@ int main()
     memset(lazyStudents, 0, countVertex * sizeof(int));
 
     printf("Enter the pairs:\n");
-    for (int i = 0; i < countPairs; ++i) {
-        int start = 0;
-        int end = 0;
-        scanf("%d %d", &start, &end);
-        if (end != -1) {
-            edges[i] = createEdge(start - 1, end - 1, 1, 1);
-        } else {
-            lazyStudents[lazyStudentsCount] = start;
-            ++lazyStudentsCount;
-        }
-    }
+    scanPairs(edges, lazyStudents, countPairs, lazyStudentsCount);
 
     Graph* graph = createGraph(countPairs, countVertex, edges);
 
-    for (int i = 0; i < 3; ++i) {
-        printf("%d passed his own variant\n", i + 1);
-        simplifiedDFS(graph, i, i);
-    }
-    for (int i = 0; i < lazyStudentsCount; ++i) {
-        printf("%d didn't pass anything\n", lazyStudents[i]);
-    }
+    printStudents(graph, lazyStudents, lazyStudentsCount);
 
     free(lazyStudents);
     removeEdges(edges, countPairs);

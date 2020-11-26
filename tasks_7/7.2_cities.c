@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-const int MAX_LENGTH = 1000000000;
-
 bool isNumber(char sign)
 {
     return sign >= '0' && sign <= '9';
@@ -58,15 +56,15 @@ bool isUsed(int* usedCities, int usedCitiesCount, int city)
 {
     for (int i = 0; i < usedCitiesCount; ++i) {
         if (usedCities[i] == city) {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 bool addCityToState(int** states, Graph* graph, int stateIndex, int citiesCount, int* usedCities, int usedCitiesCount)
 {
-    int minLength = MAX_LENGTH;
+    int minLength = -1;
     int city = -1;
     for (int i = 0; i < citiesCount; ++i) {
         if (states[stateIndex][i] == -1) {
@@ -74,7 +72,7 @@ bool addCityToState(int** states, Graph* graph, int stateIndex, int citiesCount,
         }
         for (int j = 0; j < citiesCount; ++j) {
             int currentLength = getMatrixValue(graph, states[stateIndex][i], j);
-            if (j != i && !isUsed(usedCities, usedCitiesCount, j) && currentLength != 0 && currentLength < minLength) {
+            if (j != i && !isUsed(usedCities, usedCitiesCount, j) && currentLength != 0 && (currentLength < minLength || minLength == -1)) {
                 minLength = currentLength;
                 city = j;
             }

@@ -61,6 +61,8 @@ target_link_libraries(5.2_testAVL avlLibrary)
 add_executable(6_testHashTable tasks_6/6_testHashTable.c)
 target_link_libraries(6_testHashTable hashTableLibrary)
 
+add_executable(7.1_students tasks_7/7.1_students.c)
+target_link_libraries(7.1_students graphLibrary)
 add_executable(7.2_cities tasks_7/7.2_cities.c)
 target_link_libraries(7.2_cities graphLibrary)
 

@@ -1,4 +1,5 @@
 #include "lexer.h"
+#include "../commonUtils/numericOperations.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -67,18 +68,17 @@ void addTransition(DFAState* firstState, char value, DFAState* secondState)
     firstState->transitionsSize++;
 }
 
-bool isDigit(char symbol)
-{
-    return (symbol >= '0' && symbol <= '9');
-}
-
 bool isStringCorrect(char* string, DFA* dfa)
 {
     DFAState* currentState = dfa->initialState;
     for (int i = 0; i < strlen(string); ++i) {
+        char currentSymbol = string[i];
+        if (isDigit(currentSymbol)) {
+            currentSymbol = 'd';
+        }
         bool isSymbolFound = false;
         for (int j = 0; j < currentState->transitionsSize; ++j) {
-            if ((currentState->transitions[j]->symbol == string[i] && string[i] != 'd') || (currentState->transitions[j]->symbol == 'd' && isDigit(string[i]))) {
+            if (currentState->transitions[j]->symbol == currentSymbol) {
                 currentState = currentState->transitions[j]->transitionState;
                 isSymbolFound = true;
                 break;

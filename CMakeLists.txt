@@ -4,8 +4,8 @@ project(spbu_2020_c_homeworks C)
 set(CMAKE_C_STANDARD 11)
 
 set(SOURCE_LIB
-        library/commonUtils/numericOperations.c
-        library/commonUtils/arrayOperations.c)
+        library/commonUtils/numericOperations.c library/commonUtils/numericOperations.h
+        library/commonUtils/arrayOperations.c library/commonUtils/arrayOperations.h)
 
 set(LIST_LIB library/dataStructures/List/list.c)
 set(STACK_LIB library/dataStructures/Stack/stack.c library/dataStructures/Stack/stack.h)
@@ -62,6 +62,7 @@ add_executable(6_testHashTable tasks_6/6_testHashTable.c)
 target_link_libraries(6_testHashTable hashTableLibrary)
 
 add_executable(8_lexer tasks_8/8_lexer.c)
+target_link_libraries(lexerLibrary library)
 target_link_libraries(8_lexer library)
 target_link_libraries(8_lexer lexerLibrary)
 

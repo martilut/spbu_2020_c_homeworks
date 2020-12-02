@@ -4,17 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void freeStates(DFAState** dfaStates)
+void freeStates(DFAState** dfaStates, int stateCount)
 {
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < stateCount; ++i) {
         removeDFAState(dfaStates[i]);
     }
     free(dfaStates);
 }
 
-int main()
+void fillDFAStates(DFAState** dfaStates)
 {
-    DFAState** dfaStates = (DFAState**)malloc(8 * sizeof(DFAState*));
     dfaStates[0] = createDFAState(0, false);
     dfaStates[1] = createDFAState(1, false);
     dfaStates[2] = createDFAState(2, true);
@@ -23,23 +22,41 @@ int main()
     dfaStates[5] = createDFAState(5, false);
     dfaStates[6] = createDFAState(6, false);
     dfaStates[7] = createDFAState(7, true);
+}
 
-    addTransition(dfaStates[0], '+', dfaStates[1]);
-    addTransition(dfaStates[0], '-', dfaStates[1]);
-    addTransition(dfaStates[0], 'd', dfaStates[2]);
-    addTransition(dfaStates[1], 'd', dfaStates[2]);
-    addTransition(dfaStates[2], 'd', dfaStates[2]);
-    addTransition(dfaStates[2], '.', dfaStates[3]);
-    addTransition(dfaStates[3], 'd', dfaStates[4]);
-    addTransition(dfaStates[4], 'd', dfaStates[4]);
-    addTransition(dfaStates[4], 'E', dfaStates[5]);
-    addTransition(dfaStates[5], '+', dfaStates[6]);
-    addTransition(dfaStates[5], '-', dfaStates[6]);
-    addTransition(dfaStates[5], 'd', dfaStates[7]);
-    addTransition(dfaStates[6], 'd', dfaStates[7]);
-    addTransition(dfaStates[7], 'd', dfaStates[7]);
+int main()
+{
+    int stateCount = 8;
+    char digit = 'd';
 
-    DFA* dfa = createDFA(dfaStates[0]);
+    DFAState** dfaStates = (DFAState**)malloc(stateCount * sizeof(DFAState*));
+    fillDFAStates(dfaStates);
+
+    DFAState* startState = dfaStates[0];
+    DFAState* numberSignState = dfaStates[1];
+    DFAState* intPartState = dfaStates[2];
+    DFAState* dotState = dfaStates[3];
+    DFAState* floatPartState = dfaStates[4];
+    DFAState* EState = dfaStates[5];
+    DFAState* ESignState = dfaStates[6];
+    DFAState* EDegreeState = dfaStates[7];
+
+    addTransition(startState, '+', numberSignState);
+    addTransition(startState, '-', numberSignState);
+    addTransition(startState, digit, intPartState);
+    addTransition(numberSignState, digit, intPartState);
+    addTransition(intPartState, digit, intPartState);
+    addTransition(intPartState, '.', dotState);
+    addTransition(dotState, digit, floatPartState);
+    addTransition(floatPartState, digit, floatPartState);
+    addTransition(floatPartState, 'E', EState);
+    addTransition(EState, '+', ESignState);
+    addTransition(EState, '-', ESignState);
+    addTransition(EState, digit, EDegreeState);
+    addTransition(ESignState, digit, EDegreeState);
+    addTransition(EDegreeState, digit, EDegreeState);
+
+    DFA* dfa = createDFA(startState);
 
     printf("Enter your string:\n");
     char* string = scanString();
@@ -50,7 +67,7 @@ int main()
     }
 
     free(string);
-    freeStates(dfaStates);
+    freeStates(dfaStates, stateCount);
     removeDFA(dfa);
 
     return 0;

@@ -12,6 +12,9 @@ set(DLIST_LIB library/dataStructures/List/doubleList.c library/dataStructures/Li
 set(STACK_LIB library/dataStructures/Stack/stack.c library/dataStructures/Stack/stack.h)
 set(BST_LIB library/dataStructures/BinarySearchTree/binarySearchTree.c library/dataStructures/BinarySearchTree/binarySearchTree.h)
 set(AVL_LIB library/dataStructures/BinarySearchTree/AVL.c library/dataStructures/BinarySearchTree/AVL.h)
+set(MATRIX_LIB library/dataStructures/Matrix/matrix.c library/dataStructures/Matrix/matrix.h)
+set(HASHTABLE_LIB library/dataStructures/HashTable/hashTable.c library/dataStructures/HashTable/hashTable.h)
+set(GRAPH_LIB library/dataStructures/Graph/graph.c library/dataStructures/Graph/graph.h)
 
 add_library(library ${SOURCE_LIB})
 add_library(stackLibrary ${STACK_LIB})
@@ -19,6 +22,9 @@ add_library(listLibrary ${LIST_LIB})
 add_library(dlistLibrary ${DLIST_LIB})
 add_library(bstLibrary ${BST_LIB})
 add_library(avlLibrary ${AVL_LIB})
+add_library(matrixLibrary ${MATRIX_LIB})
+add_library(hashTableLibrary ${HASHTABLE_LIB})
+add_library(graphLibrary ${GRAPH_LIB})
 
 add_executable(1.1spiral.c tasks/1.1spiral.c)
 add_executable(1.2moving.c tasks/1.2moving.c)
@@ -56,6 +62,14 @@ target_link_libraries(5.1_testBST bstLibrary)
 add_executable(5.2_testAVL tasks_5/5.2_testAVL.c)
 target_link_libraries(5.2_testAVL avlLibrary)
 
+add_executable(6_testHashTable tasks_6/6_testHashTable.c)
+target_link_libraries(6_testHashTable hashTableLibrary)
+
+add_executable(7.1_students tasks_7/7.1_students.c)
+target_link_libraries(7.1_students graphLibrary)
+add_executable(7.2_cities tasks_7/7.2_cities.c)
+target_link_libraries(7.2_cities graphLibrary)
+
 add_executable(test_1.1_sort test_1/1.1_sort.c)
 
 add_executable(test_2.1_fibbonachi test_2/2.1_fibbonachi.c)
@@ -63,3 +77,5 @@ add_executable(test_2.2_dates test_2/2.2_dates.c)
 
 add_executable(fix_test_1.1 fix_test_1/task_1.1.c)
 target_link_libraries(fix_test_1.1 dlistLibrary)
+add_executable(fix_test_1.2 fix_test_1/task_1.2.c)
+target_link_libraries(fix_test_1.2 matrixLibrary)

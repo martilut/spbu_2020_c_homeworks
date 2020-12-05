@@ -24,14 +24,8 @@ void fillDFAStates(DFAState** dfaStates)
     dfaStates[7] = createDFAState(7, true);
 }
 
-int main()
+void createStatesAndTransitions(DFAState** dfaStates, char digit)
 {
-    int stateCount = 8;
-    char digit = 'd';
-
-    DFAState** dfaStates = (DFAState**)malloc(stateCount * sizeof(DFAState*));
-    fillDFAStates(dfaStates);
-
     DFAState* startState = dfaStates[0];
     DFAState* numberSignState = dfaStates[1];
     DFAState* intPartState = dfaStates[2];
@@ -55,8 +49,19 @@ int main()
     addTransition(EState, digit, EDegreeState);
     addTransition(ESignState, digit, EDegreeState);
     addTransition(EDegreeState, digit, EDegreeState);
+}
 
-    DFA* dfa = createDFA(startState);
+int main()
+{
+    int stateCount = 8;
+    char digit = 'd';
+
+    DFAState** dfaStates = (DFAState**)malloc(stateCount * sizeof(DFAState*));
+    fillDFAStates(dfaStates);
+
+    createStatesAndTransitions(dfaStates, digit);
+
+    DFA* dfa = createDFA(dfaStates[0]);
 
     printf("Enter your string:\n");
     char* string = scanString();

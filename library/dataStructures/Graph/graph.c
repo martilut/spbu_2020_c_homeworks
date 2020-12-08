@@ -83,6 +83,27 @@ void simplifiedDFS(Graph* graph, int currentVertex, int startVertex) // works on
     }
 }
 
+bool depthFirstSearch(Graph* graph, int currentVertex, int* vertexState)
+{
+    vertexState[currentVertex] = 1;
+    for (int i = 0; i < graph->countVertex; i++) {
+        if (graph->matrix[currentVertex][i] != 0)
+        {
+            if(vertexState[i] == 1) {
+                return true;
+            }
+            if (vertexState[i] == 0){
+                if(depthFirstSearch(graph, i, vertexState))
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    vertexState[currentVertex] = 2;
+    return false;
+}
+
 void removeGraph(Graph* graph)
 {
     for (int i = 0; i < graph->countVertex; ++i) {

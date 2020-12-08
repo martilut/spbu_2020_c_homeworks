@@ -87,8 +87,7 @@ bool depthFirstSearch(Graph* graph, int currentVertex, int* vertexState)
 {
     vertexState[currentVertex] = 1;
     for (int i = 0; i < graph->countVertex; i++) {
-        if (graph->matrix[currentVertex][i] != 0)
-        {
+        if (graph->matrix[currentVertex][i] != 0) {
             if (vertexState[i] == 1) {
                 return true;
             }

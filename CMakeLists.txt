@@ -4,23 +4,29 @@ project(spbu_2020_c_homeworks C)
 set(CMAKE_C_STANDARD 11)
 
 set(SOURCE_LIB
-        library/commonUtils/numericOperations.c
-        library/commonUtils/arrayOperations.c)
+        library/commonUtils/numericOperations.c library/commonUtils/numericOperations.h
+        library/commonUtils/arrayOperations.c library/commonUtils/arrayOperations.h)
 
 set(LIST_LIB library/dataStructures/List/list.c)
+set(DLIST_LIB library/dataStructures/List/doubleList.c library/dataStructures/List/doubleList.h)
 set(STACK_LIB library/dataStructures/Stack/stack.c library/dataStructures/Stack/stack.h)
 set(BST_LIB library/dataStructures/BinarySearchTree/binarySearchTree.c library/dataStructures/BinarySearchTree/binarySearchTree.h)
 set(AVL_LIB library/dataStructures/BinarySearchTree/AVL.c library/dataStructures/BinarySearchTree/AVL.h)
+set(MATRIX_LIB library/dataStructures/Matrix/matrix.c library/dataStructures/Matrix/matrix.h)
 set(HASHTABLE_LIB library/dataStructures/HashTable/hashTable.c library/dataStructures/HashTable/hashTable.h)
 set(GRAPH_LIB library/dataStructures/Graph/graph.c library/dataStructures/Graph/graph.h)
+set(LEXER_LIB library/analyzers/lexer.c library/analyzers/lexer.h)
 
 add_library(library ${SOURCE_LIB})
 add_library(stackLibrary ${STACK_LIB})
 add_library(listLibrary ${LIST_LIB})
+add_library(dlistLibrary ${DLIST_LIB})
 add_library(bstLibrary ${BST_LIB})
 add_library(avlLibrary ${AVL_LIB})
+add_library(matrixLibrary ${MATRIX_LIB})
 add_library(hashTableLibrary ${HASHTABLE_LIB})
 add_library(graphLibrary ${GRAPH_LIB})
+add_library(lexerLibrary ${LEXER_LIB})
 
 add_executable(1.1spiral.c tasks/1.1spiral.c)
 add_executable(1.2moving.c tasks/1.2moving.c)
@@ -64,9 +70,22 @@ target_link_libraries(6_testHashTable hashTableLibrary)
 add_executable(7.1_students tasks_7/7.1_students.c)
 target_link_libraries(7.1_students graphLibrary)
 
+add_executable(7.2_cities tasks_7/7.2_cities.c)
+target_link_libraries(7.2_cities graphLibrary)
+
+add_executable(8_lexer tasks_8/8_lexer.c)
+target_link_libraries(lexerLibrary library)
+target_link_libraries(8_lexer library)
+target_link_libraries(8_lexer lexerLibrary)
+
 add_executable(test_1.1_sort test_1/1.1_sort.c)
 
 add_executable(test_2.1_fibbonachi test_2/2.1_fibbonachi.c)
 add_executable(test_2.2_dates test_2/2.2_dates.c)
 add_executable(test_2.3_matrix test_2/2.3_matrix.c)
 target_link_libraries(test_2.3_matrix graphLibrary)
+
+add_executable(fix_test_1.1 fix_test_1/task_1.1.c)
+target_link_libraries(fix_test_1.1 dlistLibrary)
+add_executable(fix_test_1.2 fix_test_1/task_1.2.c)
+target_link_libraries(fix_test_1.2 matrixLibrary)

@@ -104,6 +104,11 @@ bool depthFirstSearch(Graph* graph, int currentVertex, int* vertexState)
     return false;
 }
 
+int getMatrixValue(Graph* graph, int i, int j)
+{
+    return graph->matrix[i][j];
+}
+
 void removeGraph(Graph* graph)
 {
     for (int i = 0; i < graph->countVertex; ++i) {

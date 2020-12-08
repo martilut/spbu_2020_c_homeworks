@@ -12,5 +12,6 @@ Graph* createGraph(int countEdges, int countVertex, Edge** edges);
 void removeGraph(Graph* graph);
 void simplifiedDFS(Graph* graph, int currentVertex, int startVertex);
 bool depthFirstSearch(Graph* graph, int currentVertex, int* vertexState);
+int getMatrixValue(Graph* graph, int i, int j);
 
 #endif //SPBU_2020_C_HOMEWORKS_GRAPH_H

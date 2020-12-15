@@ -75,3 +75,12 @@ void printDoubleArray(DoubleArray* doubleArray)
         printf("\n");
     }
 }
+
+void removeDoubleArray(DoubleArray* doubleArray)
+{
+    for (int i = 0; i < doubleArray->rows; ++i) {
+        free(doubleArray->dArray[i]);
+    }
+    free(doubleArray->dArray);
+    free(doubleArray);
+}

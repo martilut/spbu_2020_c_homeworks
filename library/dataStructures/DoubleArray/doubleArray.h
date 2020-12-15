@@ -4,7 +4,7 @@
 typedef struct DoubleArray DoubleArray;
 DoubleArray* createDoubleArray(int rows, int columns);
 void addToDoubleArray(DoubleArray* doubleArray, int i, int j, int value);
-int* getPoints(DoubleArray* doubleArray);
+void printPoints(DoubleArray* doubleArray);
 void printDoubleArray(DoubleArray* doubleArray);
 void removeDoubleArray(DoubleArray* doubleArray);
 

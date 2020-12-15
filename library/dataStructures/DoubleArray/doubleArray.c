@@ -49,7 +49,7 @@ int getMaxInColumn(DoubleArray* doubleArray, int column)
     return maximum;
 }
 
-int* getPoints(DoubleArray* doubleArray)
+void printPoints(DoubleArray* doubleArray)
 {
     int* points = (int*)malloc(sizeof(int));
     int index = 0;
@@ -63,7 +63,10 @@ int* getPoints(DoubleArray* doubleArray)
             }
         }
     }
-    return points;
+    for (int i = 0; i < index; ++i) {
+        printf("%d ", points[i]);
+    }
+    free(points);
 }
 
 void printDoubleArray(DoubleArray* doubleArray)

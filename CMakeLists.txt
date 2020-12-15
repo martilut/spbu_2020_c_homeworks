@@ -16,6 +16,7 @@ set(MATRIX_LIB library/dataStructures/Matrix/matrix.c library/dataStructures/Mat
 set(HASHTABLE_LIB library/dataStructures/HashTable/hashTable.c library/dataStructures/HashTable/hashTable.h)
 set(GRAPH_LIB library/dataStructures/Graph/graph.c library/dataStructures/Graph/graph.h)
 set(LEXER_LIB library/analyzers/lexer.c library/analyzers/lexer.h)
+set(DOUBLEARRAY_LIB library/dataStructures/DoubleArray/doubleArray.c library/dataStructures/DoubleArray/doubleArray.h)
 
 add_library(library ${SOURCE_LIB})
 add_library(stackLibrary ${STACK_LIB})
@@ -27,6 +28,7 @@ add_library(matrixLibrary ${MATRIX_LIB})
 add_library(hashTableLibrary ${HASHTABLE_LIB})
 add_library(graphLibrary ${GRAPH_LIB})
 add_library(lexerLibrary ${LEXER_LIB})
+add_library(doubleArrayLibrary ${DOUBLEARRAY_LIB})
 
 add_executable(1.1spiral.c tasks/1.1spiral.c)
 add_executable(1.2moving.c tasks/1.2moving.c)
@@ -87,3 +89,6 @@ add_executable(fix_test_1.1 fix_test_1/task_1.1.c)
 target_link_libraries(fix_test_1.1 dlistLibrary)
 add_executable(fix_test_1.2 fix_test_1/task_1.2.c)
 target_link_libraries(fix_test_1.2 matrixLibrary)
+
+add_executable(test_final_2 test_final/2_points.c)
+target_link_libraries(test_final_2 doubleArrayLibrary)

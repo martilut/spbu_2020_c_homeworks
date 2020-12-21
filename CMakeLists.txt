@@ -90,5 +90,8 @@ target_link_libraries(fix_test_1.1 dlistLibrary)
 add_executable(fix_test_1.2 fix_test_1/task_1.2.c)
 target_link_libraries(fix_test_1.2 matrixLibrary)
 
+add_executable(test_final_1 test_final/1_numbers.c)
+target_link_libraries(test_final_1 avlLibrary)
+target_link_libraries(test_final_1 library)
 add_executable(test_final_2 test_final/2_points.c)
 target_link_libraries(test_final_2 doubleArrayLibrary)

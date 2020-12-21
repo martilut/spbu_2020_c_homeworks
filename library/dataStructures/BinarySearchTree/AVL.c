@@ -6,6 +6,7 @@
 typedef struct BinaryTreeNode {
     int value;
     int height;
+    int valueCount;
     struct BinaryTreeNode* leftChild;
     struct BinaryTreeNode* rightChild;
 } BinaryTreeNode;
@@ -30,6 +31,7 @@ BinaryTreeNode* createBinaryTreeNode(int value)
     BinaryTreeNode* binaryTreeNode = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
     binaryTreeNode->value = value;
     binaryTreeNode->height = 0;
+    binaryTreeNode->valueCount = 1;
     binaryTreeNode->leftChild = NULL;
     binaryTreeNode->rightChild = NULL;
     return binaryTreeNode;
@@ -140,6 +142,7 @@ bool exists(int value, BinarySearchTree* binaryTree)
 bool recursiveAddValue(int value, BinaryTreeNode* currentNode)
 {
     if (value == currentNode->value) {
+        (currentNode->valueCount)++;
         return false;
     }
     if (value < currentNode->value) {
@@ -246,7 +249,7 @@ void recursiveIncreasing(BinaryTreeNode* node)
 {
     if (node != NULL) {
         recursiveIncreasing(node->leftChild);
-        printf("%d ", node->value);
+        printf("Number: %d Value count: %d\n", node->value, node->valueCount);
         recursiveIncreasing(node->rightChild);
     }
 }

@@ -22,6 +22,11 @@ struct DFA {
     DFAState* failState;
 };
 
+bool isLetter(char symbol)
+{
+    return (symbol >= 'A' && symbol <= 'Z');
+}
+
 Transition* createTransition(char symbol, DFAState* transitionState)
 {
     Transition* transition = (Transition*)malloc(sizeof(Transition));
@@ -75,6 +80,9 @@ bool isStringCorrect(char* string, DFA* dfa)
         char currentSymbol = string[i];
         if (isDigit(currentSymbol)) {
             currentSymbol = 'd';
+        }
+        if (isLetter(currentSymbol)) {
+            currentSymbol = 'l';
         }
         bool isSymbolFound = false;
         for (int j = 0; j < currentState->transitionsSize; ++j) {

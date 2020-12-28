@@ -14,5 +14,6 @@ void addTransition(DFAState* firstState, char value, DFAState* secondState);
 bool isStringCorrect(char* string, DFA* dfa);
 void removeDFAState(DFAState* currentState);
 void removeDFA(DFA* dfa);
+bool isLetter(char symbol);
 
 #endif //SPBU_2020_C_HOMEWORKS_LEXER_H
